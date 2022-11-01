@@ -1,7 +1,8 @@
+-- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: bdd_biotecnologia
 -- ------------------------------------------------------
--- Server version	8.0.29
+-- Server version	8.0.30
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -62,7 +63,7 @@ CREATE TABLE `detalle` (
   CONSTRAINT `cat_det_estado` FOREIGN KEY (`cat_id_estado`) REFERENCES `catalogo` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `cat_det_nombre` FOREIGN KEY (`cat_id`) REFERENCES `catalogo` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `don_detalle` FOREIGN KEY (`don_cedula`) REFERENCES `donaciones` (`don_cedula`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +72,7 @@ CREATE TABLE `detalle` (
 
 LOCK TABLES `detalle` WRITE;
 /*!40000 ALTER TABLE `detalle` DISABLE KEYS */;
+INSERT INTO `detalle` VALUES (5,4,'2022-05-04',1050518594,21,14),(6,4,'2022-05-04',1050518594,21,14),(7,4,'2022-05-04',1050518594,21,14);
 /*!40000 ALTER TABLE `detalle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,6 +128,7 @@ CREATE TABLE `donaciones` (
 
 LOCK TABLES `donaciones` WRITE;
 /*!40000 ALTER TABLE `donaciones` DISABLE KEYS */;
+INSERT INTO `donaciones` VALUES (1050518594,'alejo','0988665533','ski@gmail.com','si ahi misma','2022-10-31');
 /*!40000 ALTER TABLE `donaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +147,7 @@ CREATE TABLE `usos` (
   PRIMARY KEY (`uso_id`),
   KEY `usos_usu_idx` (`usu_cedula`),
   CONSTRAINT `usos_usu` FOREIGN KEY (`usu_cedula`) REFERENCES `usuarios` (`usu_cedula`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,6 +156,7 @@ CREATE TABLE `usos` (
 
 LOCK TABLES `usos` WRITE;
 /*!40000 ALTER TABLE `usos` DISABLE KEYS */;
+INSERT INTO `usos` VALUES (2,10,'agar power',1050518594);
 /*!40000 ALTER TABLE `usos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-31 14:44:18
+-- Dump completed on 2022-10-31 17:00:35
