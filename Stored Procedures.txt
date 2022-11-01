@@ -1,0 +1,110 @@
+---------Catalogo------------------------
+
+
+--Delete--
+ `sp_catalogo_delete`(in padre int)
+BEGIN
+	DELETE FROM catalogo  WHERE `cat_id` = padre;
+		SELECT 'BORRADO';
+END
+
+--Insert--
+`sp_catalogo_insert`(in nombre varchar(100),in des varchar(200),in padre int,in codigo varchar(200))
+BEGIN
+declare sig int;
+  IF exists (SELECT * FROM CATALOGO WHERE CAT_NOMBRE=nombre and cat_padre=padre) then
+     select 1;
+  else   
+	   select max(cat_id) into sig from catalogo; 
+        set sig=sig+1;
+       INSERT INTO catalogo (`cat_id`,`cat_nombre`,`cat_descripcion`,
+		`cat_padre`,`cat_codigo`)
+	   VALUES (sig,nombre,des,padre,codigo);
+       select 0;
+       end if;
+END
+
+--Select--
+
+ `sp_catalogo_select`(in padre int)
+BEGIN
+	SELECT * FROM catalogo where cat_padre=padre;
+END
+
+--Update--
+
+sp_catalogo_update`(in op int,in nombre varchar(100),in des varchar(200),in padre int,in codigo varchar(200))
+BEGIN
+UPDATE catalogo SET
+	`cat_nombre` = nombre,
+	`cat_descripcion` = des,
+    `cat_codigo` = codigo
+     WHERE `cat_id` = padre;
+     SELECT * FROM CATALOGO WHERE  `cat_id` = padre;
+END
+
+---------Detalle------------------------
+
+--Delete--
+
+ `sp_detalle_delete`(in id int)
+BEGIN
+	DELETE FROM detalle  WHERE `det_id` = id;
+		SELECT 'BORRADO';
+END
+
+--Insert--
+
+`sp_detalle_insert`(in nombre int,in cantidad int ,in fecha date,in cedula int ,in estado int)
+BEGIN
+declare sig int;
+	   select max(det_id) into sig from detalle; 
+        set sig=sig+1;
+       INSERT INTO detalle (`det_id`,`cat_id`,`det_cantidad`,
+		`det_fechacad`,`don_cedula`,`cat_id_estado`)
+	   VALUES (sig,nombre,cantidad,fecha,cedula,estado);
+END
+
+--Select--
+
+`sp_detalle_select`(in id int)
+BEGIN
+	SELECT * FROM detalle where det_id=id;
+END
+
+--Update--
+
+`sp_detalle_update`(in id int, in nombre int,in cantidad int,in fecha date,in cedula int,in estado int)
+BEGIN
+UPDATE detalle SET
+	`cat_id` = nombre,
+	`det_cantidad` = cantidad,
+    `det_fechacad` = fecha,
+    `don_cedula` = cedula,
+    `cat_id_estado` = estado
+     WHERE `det_id` = id;
+     SELECT * FROM detalle WHERE  `det_id` = id;
+END
+
+
+---------Detalle-Usos------------------------
+
+--Delete--
+
+ `sp_detalle_usos_delete`(in id int)
+BEGIN
+	DELETE FROM detalle_usos  WHERE `usos_uso_id` = id;
+		SELECT 'BORRADO';
+
+END
+--Insert--
+
+`sp_detalle_usos_insert`(in detalle_ID int,in uso_ID int)
+BEGIN
+       INSERT INTO detalle_usos (`detalle_det_id `,`usos_uso_id`)
+	   VALUES (detalle_ID,uso_ID);
+END
+
+--Select--
+
+--Update--
