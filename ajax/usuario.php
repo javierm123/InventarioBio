@@ -3,6 +3,7 @@ session_start();
 require_once "../modelos/Usuario.php";
 
 $usuario=new Usuario();
+
 $claveu=isset($_POST["claveu"])? limpiarCadena($_POST["claveu"]):"";
 $usu_id=isset($_POST["usu_id"])? limpiarCadena($_POST["usu_id"]):"";
 $usu_nombre=isset($_POST["usu_nombre"])? limpiarCadena($_POST["usu_nombre"]):"";
@@ -15,87 +16,6 @@ $usu_clave=isset($_POST["usu_clave"])? limpiarCadena($_POST["usu_clave"]):"";
 
 
 switch ($_GET["op"]) {
-	case 'guardaryeditar':
-	//Hash SHA256 para la contraseña
-	if ($claveu==$usu_clave){
-		$usu_clavehash=$usu_clave;
-		}
-	else{
-		$usu_clavehash=hash("SHA256", $usu_clave);
-		}
-	
-	if (empty($usu_id)) {
-		$rspta=$usuario->insertar($usu_nombre,$usu_cedula,$usu_telefono,$usu_correo,$usu_cargo,$usu_login,$usu_clavehash,$_POST['permiso']);
-		echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar Login existente";
-	}else{
-		$rspta=$usuario->editar($usu_id,$usu_nombre,$usu_cedula,$usu_telefono,$usu_correo,$usu_cargo,$usu_login,$usu_clavehash,$_POST['permiso']);
-		//echo $usu_clave;
-		echo $rspta ? "Datos actualizados correctamente" : "No se pudo actualizar Login existente";
-	}
-	break;
-	
-
-	case 'desactivar':
-	$rspta=$usuario->desactivar($usu_id);
-	echo $rspta ? "Datos desactivados correctamente" : "No se pudo desactivar los datos";
-	break;
-
-	case 'activar':
-	$rspta=$usuario->activar($usu_id);
-	echo $rspta ? "Datos activados correctamente" : "No se pudo activar los datos";
-	break;
-	
-	case 'mostrar':
-		//echo $_POST["usu_id"];
-		$rspta=$usuario->mostrar($usu_id);
-		echo json_encode($rspta);
-	break;
-
-	case 'listar':
-	$rspta=$usuario->listar();
-	$data=Array();
-	while ($reg=$rspta->fetch_object()) {
-		$data[]=array(
-			"0"=>($reg->usu_condicion)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->usu_id.')"><i class="fa fa-pencil"></i></button>'.' '.'<button class="btn btn-danger btn-xs" onclick="desactivar('.$reg->usu_id.')"><i class="fa fa-close"></i></button>':'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->usu_id.')"><i class="fa fa-pencil"></i></button>'.' '.'<button class="btn btn-primary btn-xs" onclick="activar('.$reg->usu_id.')"><i class="fa fa-check"></i></button>',
-			"1"=>$reg->usu_nombre,
-			"2"=>$reg->usu_login,
-			"3"=>$reg->usu_cedula,
-			"4"=>$reg->usu_telefono,
-			"5"=>$reg->usu_correo,
-			"6"=>$reg->usu_cargo,
-			"7"=>($reg->usu_condicion)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>'
-		);
-	}
-
-	$results=array(
-             "sEcho"=>1,//info para datatables
-             "iTotalRecords"=>count($data),//enviamos el total de registros al datatable
-             "iTotalDisplayRecords"=>count($data),//enviamos el total de registros a visualizar
-             "aaData"=>$data); 
-	echo json_encode($results);
-	break;
-
-	case 'permisos':
-			//obtenemos toodos los permisos de la tabla permisos
-	require_once "../modelos/Permiso.php";
-	$permiso=new Permiso();
-	$rspta=$permiso->listar();
-//obtener permisos asigandos
-	$id=$_GET['id'];
-	$marcados=$usuario->listarmarcados($id);
-	$valores=array();
-
-//almacenar permisos asigandos
-	while ($per=$marcados->fetch_object()) {
-		array_push($valores, $per->per_id);
-	}
-			//mostramos la lista de permisos
-	while ($reg=$rspta->fetch_object()) {
-		$sw=in_array($reg->per_id,$valores)?'checked':'';
-		echo '<li><input type="checkbox" '.$sw.' name="permiso[]" value="'.$reg->per_id.'">'.$reg->per_nombre.'</li>';
-	}
-	break;
-
 	case 'verificar':
 
 	//validar si el usuario tiene acceso al sistema
@@ -116,9 +36,6 @@ switch ($_GET["op"]) {
 		$_SESSION['usu_correo']=$fetch->usu_correo;
 		$_SESSION['usu_cedula']=$fetch->usu_cedula;
 	   
-		//obten si es coordinador
-		$_SESSION['coor']=$usuario->coor($fetch->usu_id);
-	   	//obtenemos los permisos
 		$marcados=$usuario->listarmarcados($fetch->usu_id);
 			
 
@@ -145,6 +62,28 @@ switch ($_GET["op"]) {
  //echo $_SESSION['usu_cedula'];
 	echo json_encode($fetch);
 	break;
+
+	case 'permisos':
+			//obtenemos toodos los permisos de la tabla permisos
+	require_once "../modelos/Permiso.php";
+	$permiso=new Permiso();
+	$rspta=$permiso->listar();
+//obtener permisos asigandos
+	$id=$_GET['id'];
+	$marcados=$usuario->listarmarcados($id);
+	$valores=array();
+
+//almacenar permisos asigandos
+	while ($per=$marcados->fetch_object()) {
+		array_push($valores, $per->per_id);
+	}
+			//mostramos la lista de permisos
+	while ($reg=$rspta->fetch_object()) {
+		$sw=in_array($reg->per_id,$valores)?'checked':'';
+		echo '<li><input type="checkbox" '.$sw.' name="permiso[]" value="'.$reg->per_id.'">'.$reg->per_nombre.'</li>';
+	}
+	break;
+
 	case 'salir':
 	   //limpiamos la variables de la secion
 	session_unset();
