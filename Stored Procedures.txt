@@ -107,4 +107,144 @@ END
 
 --Select--
 
+
+`sp_detalle_usos_select`(in detalle_id int,in usos_id int)
+BEGIN
+	SELECT * FROM detalle_usos where  detalle_det_id = detalle_id and usos_uso_id = usos_id;
+END
+
 --Update--
+
+`sp_detalle_usos_update`(in detalle_id int, in usos_id int)
+BEGIN
+UPDATE detalle_usos SET
+	`detalle_det_id` = detalle_id,
+	`usos_uso_id` = usos_id
+     WHERE `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
+     SELECT * FROM detalle_usos WHERE  `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
+END
+
+---------Donaciones------------------------
+
+--Delete--
+
+`sp_donaciones_delete`(in id int)
+BEGIN
+	DELETE FROM donaciones  WHERE `don_cedula` = id;
+		SELECT 'BORRADO';
+END
+
+--Insert--
+
+`sp_donaciones_insert`(in cedula int,in nombre varchar(100),in telefono int,in correo varchar(100) ,in direccion varchar(100),in fecha date)
+BEGIN
+       INSERT INTO donaciones (`don_cedula`,`don_nombre`,`don_telefono`,
+		`don_correo`,`don_direccion`,`don_fecha`)
+	   VALUES (cedula,nombre,telefono,correo,direccion,fecha);
+END
+
+
+--Select--
+
+`sp_donaciones_select`(in id int)
+BEGIN
+	SELECT * FROM donaciones where don_cedula=id;
+END
+
+--Update--
+
+`sp_donaciones_update`(in cedula int,in nombre varchar(100),in telefono int,in correo varchar(100) ,in direccion varchar(100),in fecha date)
+BEGIN
+UPDATE donaciones SET
+	`don_cedeula` = cedula,
+	`don_nombre` = nombre,
+    `don_telefono` = telefono,
+    `don_correo` = correo,
+    `don_direccion` = direccion,
+    `don_fecha` = fecha
+     WHERE `don_cedula` = cedula;
+     SELECT * FROM donaciones WHERE  `don_cedula` =cedula;
+END
+
+---------Usos------------------------
+
+--Delete--
+
+`sp_usos_delete`(in id int)
+BEGIN
+	DELETE FROM usos  WHERE `uso_id` = id;
+		SELECT 'BORRADO';
+END
+
+--Insert--
+
+`sp_usos_insert`(in cantidad int,in descripcion varchar(200),in cedula int)
+BEGIN
+       declare sig int;
+	   select max(uso_id) into sig from usos; 
+        set sig=sig+1;
+       INSERT INTO usos (`uso_id`,`uso_cantidad`,`uso_descripcion`,
+		`usu_cedula`)
+	   VALUES (sig,cantidad,descripcion,cedula);
+END
+
+--Select--
+
+`sp_usos_select`(in id int)
+BEGIN
+	SELECT * FROM usos where uso_id=id;
+END
+
+--Update--
+
+`sp_usos_update`(in id int,in cantidad int,in descripcion varchar(200),in cedula int)
+BEGIN
+UPDATE usos SET
+	`uso_cantidad` = cantidad,
+	`uso_descripcion` = descripcion,
+    `usu_cedula` = cedula
+     WHERE `uso_id` = id;
+     SELECT * FROM usos WHERE  `uso_id` = id;
+END
+
+---------Usos------------------------
+
+--Delete--
+
+`sp_usuarios_delete`(in id int)
+BEGIN
+	DELETE FROM usuarios  WHERE `usu_cedula` = id;
+		SELECT 'BORRADO';
+END
+
+--Insert--
+
+`sp_usuarios_insert`(in cedula int,in nombre varchar(50) ,in apellido varchar(50),in telefono varchar(10) ,in usuario varchar(45),in contraseña varchar(45))
+BEGIN
+       INSERT INTO usuarios (`usu_cedula`,`usu_nombre`,`usu_apellido`,
+		`usu_telefono`,`usu_usuario`,`usu_contraseña`)
+	   VALUES (cedula,nombre,apellido,telefono,usuario,contraseña);
+END
+
+--Select--
+
+`sp_usuarios_select`(in id int)
+BEGIN
+	SELECT * FROM usuarios where usu_cedula=id;
+END
+
+
+--Update--
+
+`sp_usuarios_update`(in cedula int,in nombre varchar(50) ,in apellido varchar(50),in telefono varchar(10) ,in usuario varchar(45),in contraseña varchar(45))
+BEGIN
+UPDATE usuarios SET
+	`usu_cedula` = cedula,
+	`usu_nombre` = nombre,
+    `usu_apellido` = apellido,
+    `usu_telefono` = telefono,
+    `usu_usuario` = usuario,
+    `usu_contraseña` = contraseña
+     WHERE `usu_cedula` = cedula;
+     SELECT * FROM usuarios WHERE  `usu_cedula` = cedula;
+END

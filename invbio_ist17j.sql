@@ -1,1069 +1,228 @@
--- MySQL Workbench Forward Engineering
+-- MySQL dump 10.13  Distrib 8.0.29, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: invbio_ist17j
+-- ------------------------------------------------------
+-- Server version	8.0.29
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- -----------------------------------------------------
--- Schema invbio_ist17j
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema invbio_ist17j
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `invbio_ist17j` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `invbio_ist17j` ;
+--
+-- Table structure for table `catalogo`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`catalogo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`catalogo` (
-  `cat_id` INT NOT NULL,
-  `cat_nombre` VARCHAR(45) NOT NULL,
-  `cat_descripcion` VARCHAR(100) NULL DEFAULT NULL,
-  `cat_padre` INT NOT NULL,
-  `cat_codigo` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`cat_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `catalogo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `catalogo` (
+  `cat_id` int NOT NULL,
+  `cat_nombre` varchar(45) NOT NULL,
+  `cat_descripcion` varchar(100) DEFAULT NULL,
+  `cat_padre` int NOT NULL,
+  `cat_codigo` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`cat_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `catalogo`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`donaciones`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`donaciones` (
-  `don_cedula` INT NOT NULL,
-  `don_nombre` VARCHAR(100) NOT NULL,
-  `don_telefono` VARCHAR(10) NOT NULL,
-  `don_correo` VARCHAR(50) NOT NULL,
-  `don_direccion` VARCHAR(100) NOT NULL,
-  `don_fecha` DATE NOT NULL,
-  PRIMARY KEY (`don_cedula`),
-  UNIQUE INDEX `don_cedula_UNIQUE` (`don_cedula` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+LOCK TABLES `catalogo` WRITE;
+/*!40000 ALTER TABLE `catalogo` DISABLE KEYS */;
+INSERT INTO `catalogo` VALUES (1,'CATEGORIAS',NULL,0,NULL),(2,'TIPO USUARIO',NULL,0,NULL),(3,'DOCENTE',NULL,2,NULL),(4,'CORDINADOR',NULL,2,NULL),(5,'REACTIVOS',NULL,1,''),(6,'LIMPIEZA',NULL,1,''),(7,'MATERIALES',NULL,1,''),(8,'PAPELERIA',NULL,1,''),(9,'VIDRIOS',NULL,7,''),(10,'PLASTICOS',NULL,7,''),(11,'METALES',NULL,7,''),(12,'TAPAS',NULL,7,''),(13,'ESTADO',NULL,0,NULL),(14,'BUENO',NULL,13,NULL),(15,'MALO',NULL,13,NULL),(16,'PROBETA','500 ml',9,'MAT-001'),(17,'PROBETA','100 ml',9,'MAT-002'),(18,'PROBETA','50 ml',9,'MAT-003'),(19,'PROBETA ','25 ml',9,'MAT-004'),(20,'MATRAZ','500 ml',9,'MAT-005'),(21,'MATRAZ','100 ml',9,'MAT-006'),(22,'MATRAZ','25 ml',9,'MAT-007'),(23,'TUBO DE ENSAYO','GRANDE',9,'MAT-008'),(24,'TUBO DE ENSAYO','MEDIANO ',9,'MAT-009'),(25,'TUBO DE ENSAYO','PEQUEÑO',9,'MAT-010'),(26,'ERLENMEYER','250 ml',9,'MAT-011'),(27,'ERLENMEYER','100 ml',9,'MAT-012'),(28,'ERLENMEYER','50 ml',9,'MAT-013'),(29,'FRASCOS BUECOS','500 ml',9,'MAT-014'),(30,'FRASCOS BUECOS','250 ml',9,'MAT-015'),(31,'FRASCOS MERMELADA','GRANDES',9,'MAT-016'),(32,'FRASCOS MERMELADA','MEDIANAS',9,'MAT-017'),(33,'FRASCOS MERMELADA','PEQUEÑAS',9,'MAT-018'),(34,'FRASCOS MERMELADA','MINI',9,'MAT-019'),(35,'FRASCOS DE CAFE','GRANDE ',9,'MAT-020'),(36,'FRASCOS DE CAFE','MEDIANAS',9,'MAT-021'),(37,'AGITADOR MAGNETICO','PEQUEÑO',11,'MAT-022'),(38,'FRASCOS PARA MUESTRAS','MEDIANO',9,'MAT-023'),(39,'EMBUDOS','75 mm',10,'MAT-024'),(40,'PINZAS METALICAS','GRANDES',11,'MAT-025'),(41,'PINZAS METALICAS','MEDIANAS',11,'MAT-026'),(42,'VIDRIO DE RELOJ','GRANDES',9,'MAT-027'),(43,'PIPETAS','100 ml',9,'MAT-028'),(44,'PINZAS METALICAS PUNTA DOBLADA','GRANDES',11,'MAT-029'),(45,'MECHEROS','GENERAL',11,'MAT-030'),(46,'MANDO DE VISTURI N°4','GENERAL',11,'MAT-031'),(47,'MANGO DE VISTURI °3','GENERAL',11,'MAT-032'),(48,'VASOS PRESCIPITADOS','GRANDE LARGO 600 ml',9,'MAT-033'),(49,'VASOS PRESCIPITADOS','GRANDE ANCHO 600 ml',9,'MAT-034'),(50,'VASOS PRESCIPITADOS','100 ml',9,'MAT-035'),(51,'VASOS PRESCIPITADOS','50 ml',9,'MAT-036'),(52,'VASOS PRESCIPITADOS','25 ml',9,'MAT-037'),(53,'MORTEROS','GENERAL',10,'MAT-038'),(54,'MAZOS','GENERAL',10,'MAT-039'),(55,'COLADORES','GRANDE',11,'MAT-040'),(56,'COLADORES','MEDIANO',11,'MAT-041'),(57,'COLADORES','PEQUEÑOS',11,'MAT-042'),(58,'BANDEJA DE ALUMINIO','MEDIANA',10,'MAT-043'),(59,'BANDEJA PLASTICA PLANA','MEDIANA',10,'MAT-044'),(60,'BANDEJA PLASTICA PLANA','PEQUEÑA',10,'MAT-045'),(61,'BANDEJA PLASTICA GRANDE','GENERAL',10,'MAT-046'),(62,'GRADILLAS','GENERAL',10,'MAT-047'),(63,'MATRAZ','500 ml',12,'MAT-048'),(64,'MATRAZ','100 ml',12,'MAT-049'),(65,'MATRAZ','25 ml',12,'MAT-050'),(66,'TUBO DE ENSAYO','GRANDE',12,'MAT-051'),(67,'TUBO DE ENSAYO','MEDIANO',12,'MAT-052'),(68,'TUBO DE ENSAYO','PEQUEÑO',12,'MAT-053'),(69,'FRASCOS DE BUECOS','500 ml',12,'MAT-054'),(70,'FRASCOS DE BUECOS','250 ml',12,'MAT-055'),(71,'FRASCOS DE MERMELADA','EXTRA GRANDE',12,'MAT-056'),(72,'FRASCOS DE MERMELADA','GRANDE',12,'MAT-057'),(73,'FRASCOS DE MERMELADA','MEDIANO',12,'MAT-058'),(74,'FRASCOS DE MERMELADA','PEQUEÑO',12,'MAT-059'),(75,'FRASCO DE CAFE','GRANDE ',12,'MAT-060'),(76,'FRASCO DE CAFE','MEDIANO',12,'MAT-061'),(77,'FRASCO MUESTRAS','MEDIANO',12,'MAT-062');
+/*!40000 ALTER TABLE `catalogo` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `detalle`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`detalle`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`detalle` (
-  `det_id` INT NOT NULL AUTO_INCREMENT,
-  `det_cantidad` INT NOT NULL,
-  `det_fechacad` DATE NOT NULL,
-  `don_cedula` INT NOT NULL,
-  `cat_id` INT NOT NULL,
-  `cat_id_estado` INT NOT NULL,
+DROP TABLE IF EXISTS `detalle`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detalle` (
+  `det_id` int NOT NULL AUTO_INCREMENT,
+  `det_cantidad` int NOT NULL,
+  `det_fechacad` date NOT NULL,
+  `don_cedula` int NOT NULL,
+  `cat_id` int NOT NULL,
+  `cat_id_estado` int NOT NULL,
   PRIMARY KEY (`det_id`),
-  INDEX `don_detalle_idx` (`don_cedula` ASC) VISIBLE,
-  INDEX `fk_detalle_catalogo1_idx` (`cat_id` ASC) VISIBLE,
-  INDEX `det_cat_estado_idx` (`cat_id_estado` ASC) VISIBLE,
-  CONSTRAINT `cat_det_estado`
-    FOREIGN KEY (`cat_id_estado`)
-    REFERENCES `invbio_ist17j`.`catalogo` (`cat_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `cat_det_nombre`
-    FOREIGN KEY (`cat_id`)
-    REFERENCES `invbio_ist17j`.`catalogo` (`cat_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `don_detalle`
-    FOREIGN KEY (`don_cedula`)
-    REFERENCES `invbio_ist17j`.`donaciones` (`don_cedula`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `don_detalle_idx` (`don_cedula`),
+  KEY `fk_detalle_catalogo1_idx` (`cat_id`),
+  KEY `det_cat_estado_idx` (`cat_id_estado`),
+  CONSTRAINT `cat_det_estado` FOREIGN KEY (`cat_id_estado`) REFERENCES `catalogo` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cat_det_nombre` FOREIGN KEY (`cat_id`) REFERENCES `catalogo` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `don_detalle` FOREIGN KEY (`don_cedula`) REFERENCES `donaciones` (`don_cedula`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `detalle`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`permisos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`permisos` (
-  `per_id` INT NOT NULL,
-  `per_nombre` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`per_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
+LOCK TABLES `detalle` WRITE;
+/*!40000 ALTER TABLE `detalle` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalle` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `detalle_usos`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`usuario` (
-  `usu_id` INT NOT NULL AUTO_INCREMENT,
-  `usu_nombre` VARCHAR(100) NOT NULL,
-  `usu_cedula` VARCHAR(20) NOT NULL,
-  `usu_telefono` VARCHAR(20) BINARY NULL DEFAULT NULL,
-  `usu_correo` VARCHAR(50) NULL DEFAULT NULL,
-  `usu_cargo` VARCHAR(20) NULL DEFAULT NULL,
-  `usu_login` VARCHAR(20) NOT NULL,
-  `usu_clave` VARCHAR(64) NOT NULL,
-  `usu_condicion` TINYINT NOT NULL DEFAULT '1',
-  `per_id` INT NOT NULL,
-  PRIMARY KEY (`usu_id`),
-  UNIQUE INDEX `login_UNIQUE` (`usu_login` ASC) VISIBLE,
-  INDEX `usu_per_idx` (`per_id` ASC) VISIBLE,
-  CONSTRAINT `usu_per`
-    FOREIGN KEY (`per_id`)
-    REFERENCES `invbio_ist17j`.`permisos` (`per_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 183
-DEFAULT CHARACTER SET = utf8mb3;
+DROP TABLE IF EXISTS `detalle_usos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `detalle_usos` (
+  `detalle_det_id` int NOT NULL,
+  `usos_uso_id` int NOT NULL,
+  PRIMARY KEY (`detalle_det_id`,`usos_uso_id`),
+  KEY `fk_detalle_has_usos_usos1_idx` (`usos_uso_id`),
+  KEY `fk_detalle_has_usos_detalle1_idx` (`detalle_det_id`),
+  CONSTRAINT `fk_detalle_has_usos_detalle1` FOREIGN KEY (`detalle_det_id`) REFERENCES `detalle` (`det_id`),
+  CONSTRAINT `fk_detalle_has_usos_usos1` FOREIGN KEY (`usos_uso_id`) REFERENCES `usos` (`uso_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `detalle_usos`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`usos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`usos` (
-  `uso_id` INT NOT NULL AUTO_INCREMENT,
-  `uso_cantidad` INT NOT NULL,
-  `uso_descripcion` VARCHAR(200) NOT NULL,
-  `usu_id` INT NOT NULL,
-  PRIMARY KEY (`uso_id`),
-  INDEX `usu_usos_idx` (`usu_id` ASC) VISIBLE,
-  CONSTRAINT `usu_usos`
-    FOREIGN KEY (`usu_id`)
-    REFERENCES `invbio_ist17j`.`usuario` (`usu_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+LOCK TABLES `detalle_usos` WRITE;
+/*!40000 ALTER TABLE `detalle_usos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detalle_usos` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `donaciones`
+--
 
--- -----------------------------------------------------
--- Table `bdd_biotecnologia`.`detalle_usos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`detalle_usos` (
-  `detalle_det_id` INT NOT NULL,
-  `usos_uso_id` INT NOT NULL,
-  PRIMARY KEY (`detalle_det_id`, `usos_uso_id`),
-  INDEX `fk_detalle_has_usos_usos1_idx` (`usos_uso_id` ASC) VISIBLE,
-  INDEX `fk_detalle_has_usos_detalle1_idx` (`detalle_det_id` ASC) VISIBLE,
-  CONSTRAINT `fk_detalle_has_usos_detalle1`
-    FOREIGN KEY (`detalle_det_id`)
-    REFERENCES `invbio_ist17j`.`detalle` (`det_id`),
-  CONSTRAINT `fk_detalle_has_usos_usos1`
-    FOREIGN KEY (`usos_uso_id`)
-    REFERENCES `invbio_ist17j`.`usos` (`uso_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-USE `invbio_ist17j` ;
-
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`catalogo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`catalogo` (
-  `cat_id` INT NOT NULL,
-  `cat_nombre` VARCHAR(45) NOT NULL,
-  `cat_descripcion` VARCHAR(100) NULL DEFAULT NULL,
-  `cat_padre` INT NOT NULL,
-  `cat_codigo` VARCHAR(10) NULL DEFAULT NULL,
-  PRIMARY KEY (`cat_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`donaciones`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`donaciones` (
-  `don_cedula` INT NOT NULL,
-  `don_nombre` VARCHAR(100) NOT NULL,
-  `don_telefono` VARCHAR(10) NOT NULL,
-  `don_correo` VARCHAR(50) NOT NULL,
-  `don_direccion` VARCHAR(100) NOT NULL,
-  `don_fecha` DATE NOT NULL,
+DROP TABLE IF EXISTS `donaciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `donaciones` (
+  `don_cedula` int NOT NULL,
+  `don_nombre` varchar(100) NOT NULL,
+  `don_telefono` varchar(10) NOT NULL,
+  `don_correo` varchar(50) NOT NULL,
+  `don_direccion` varchar(100) NOT NULL,
+  `don_fecha` date NOT NULL,
   PRIMARY KEY (`don_cedula`),
-  UNIQUE INDEX `don_cedula_UNIQUE` (`don_cedula` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  UNIQUE KEY `don_cedula_UNIQUE` (`don_cedula`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `donaciones`
+--
 
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`detalle`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`detalle` (
-  `det_id` INT NOT NULL AUTO_INCREMENT,
-  `det_cantidad` INT NOT NULL,
-  `det_fechacad` DATE NOT NULL,
-  `don_cedula` INT NOT NULL,
-  `cat_id` INT NOT NULL,
-  `cat_id_estado` INT NOT NULL,
-  PRIMARY KEY (`det_id`),
-  INDEX `don_detalle_idx` (`don_cedula` ASC) VISIBLE,
-  INDEX `fk_detalle_catalogo1_idx` (`cat_id` ASC) VISIBLE,
-  INDEX `det_cat_estado_idx` (`cat_id_estado` ASC) VISIBLE,
-  CONSTRAINT `cat_det_estado`
-    FOREIGN KEY (`cat_id_estado`)
-    REFERENCES `invbio_ist17j`.`catalogo` (`cat_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `cat_det_nombre`
-    FOREIGN KEY (`cat_id`)
-    REFERENCES `invbio_ist17j`.`catalogo` (`cat_id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `don_detalle`
-    FOREIGN KEY (`don_cedula`)
-    REFERENCES `invbio_ist17j`.`donaciones` (`don_cedula`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 8
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+LOCK TABLES `donaciones` WRITE;
+/*!40000 ALTER TABLE `donaciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `donaciones` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`usos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`usos` (
-  `uso_id` INT NOT NULL AUTO_INCREMENT,
-  `uso_cantidad` INT NOT NULL,
-  `uso_descripcion` VARCHAR(200) NOT NULL,
-  `usu_cedula` INT NOT NULL,
+--
+-- Table structure for table `permisos`
+--
+
+DROP TABLE IF EXISTS `permisos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `permisos` (
+  `per_id` int NOT NULL,
+  `per_nombre` text,
+  PRIMARY KEY (`per_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permisos`
+--
+
+LOCK TABLES `permisos` WRITE;
+/*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
+INSERT INTO `permisos` VALUES (1,'Escritorio'),(2,'Coordinadores'),(3,'Horario Docente'),(4,'Reportes'),(5,'Acceso'),(6,'Reportes'),(7,'Custodios');
+/*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usos`
+--
+
+DROP TABLE IF EXISTS `usos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usos` (
+  `uso_id` int NOT NULL AUTO_INCREMENT,
+  `uso_cantidad` int NOT NULL,
+  `uso_descripcion` varchar(200) NOT NULL,
+  `usu_id` int NOT NULL,
   PRIMARY KEY (`uso_id`),
-  INDEX `usos_usu_idx` (`usu_cedula` ASC) VISIBLE,
-  CONSTRAINT `usos_usu`
-    FOREIGN KEY (`usu_cedula`)
-    REFERENCES `invbio_ist17j`.`usuarios` (`usu_cedula`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 3
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `usu_usos_idx` (`usu_id`),
+  CONSTRAINT `usu_usos` FOREIGN KEY (`usu_id`) REFERENCES `usuario` (`usu_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `usos`
+--
 
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`detalle_usos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`detalle_usos` (
-  `detalle_det_id` INT NOT NULL,
-  `usos_uso_id` INT NOT NULL,
-  PRIMARY KEY (`detalle_det_id`, `usos_uso_id`),
-  INDEX `fk_detalle_has_usos_usos1_idx` (`usos_uso_id` ASC) VISIBLE,
-  INDEX `fk_detalle_has_usos_detalle1_idx` (`detalle_det_id` ASC) VISIBLE,
-  CONSTRAINT `fk_detalle_has_usos_detalle1`
-    FOREIGN KEY (`detalle_det_id`)
-    REFERENCES `invbio_ist17j`.`detalle` (`det_id`),
-  CONSTRAINT `fk_detalle_has_usos_usos1`
-    FOREIGN KEY (`usos_uso_id`)
-    REFERENCES `invbio_ist17j`.`usos` (`uso_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+LOCK TABLES `usos` WRITE;
+/*!40000 ALTER TABLE `usos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usos` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `usuario`
+--
 
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`permisos`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`permisos` (
-  `per_id` INT NOT NULL,
-  `per_nombre` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`per_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb3;
-
-
--- -----------------------------------------------------
--- Table `invbio_ist17j`.`usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `invbio_ist17j`.`usuario` (
-  `usu_id` INT NOT NULL AUTO_INCREMENT,
-  `usu_nombre` VARCHAR(100) NOT NULL,
-  `usu_cedula` VARCHAR(20) NOT NULL,
-  `usu_telefono` VARCHAR(20) CHARACTER SET 'utf8mb3' NULL DEFAULT NULL,
-  `usu_correo` VARCHAR(50) NULL DEFAULT NULL,
-  `usu_cargo` VARCHAR(20) NULL DEFAULT NULL,
-  `usu_login` VARCHAR(20) NOT NULL,
-  `usu_clave` VARCHAR(64) NOT NULL,
-  `usu_condicion` TINYINT NOT NULL DEFAULT '1',
-  `per_id` INT NOT NULL,
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario` (
+  `usu_id` int NOT NULL AUTO_INCREMENT,
+  `usu_nombre` varchar(100) NOT NULL,
+  `usu_cedula` varchar(20) NOT NULL,
+  `usu_telefono` varchar(20) DEFAULT NULL,
+  `usu_correo` varchar(50) DEFAULT NULL,
+  `usu_cargo` varchar(20) DEFAULT NULL,
+  `usu_login` varchar(20) NOT NULL,
+  `usu_clave` varchar(64) NOT NULL,
+  `usu_condicion` tinyint NOT NULL DEFAULT '1',
+  `per_id` int NOT NULL,
   PRIMARY KEY (`usu_id`),
-  UNIQUE INDEX `login_UNIQUE` (`usu_login` ASC) VISIBLE,
-  INDEX `usu_per_idx` (`per_id` ASC) VISIBLE,
-  CONSTRAINT `usu_per`
-    FOREIGN KEY (`per_id`)
-    REFERENCES `invbio_ist17j`.`permisos` (`per_id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 183
-DEFAULT CHARACTER SET = utf8mb3;
-
-USE `bdd_biotecnologia` ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_delete`(in padre int)
-BEGIN
-	DELETE FROM catalogo  WHERE `cat_id` = padre;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_insert`(in nombre varchar(100),in des varchar(200),in padre int,in codigo varchar(200))
-BEGIN
-declare sig int;
-  IF exists (SELECT * FROM CATALOGO WHERE CAT_NOMBRE=nombre and cat_padre=padre) then
-     select 1;
-  else   
-	   select max(cat_id) into sig from catalogo; 
-        set sig=sig+1;
-       INSERT INTO catalogo (`cat_id`,`cat_nombre`,`cat_descripcion`,
-		`cat_padre`,`cat_codigo`)
-	   VALUES (sig,nombre,des,padre,codigo);
-       select 0;
-       end if;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_select`(in padre int)
-BEGIN
-	SELECT * FROM catalogo where cat_padre=padre;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_update`(in op int,in nombre varchar(100),in des varchar(200),in padre int,in codigo varchar(200))
-BEGIN
-UPDATE catalogo SET
-	`cat_nombre` = nombre,
-	`cat_descripcion` = des,
-    `cat_codigo` = codigo
-     WHERE `cat_id` = padre;
-     SELECT * FROM CATALOGO WHERE  `cat_id` = padre;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_delete`(in id int)
-BEGIN
-	DELETE FROM detalle  WHERE `det_id` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_insert`(in nombre int,in cantidad int ,in fecha date,in cedula int ,in estado int)
-BEGIN
-declare sig int;
-	   select max(det_id) into sig from detalle; 
-        set sig=sig+1;
-       INSERT INTO detalle (`det_id`,`cat_id`,`det_cantidad`,
-		`det_fechacad`,`don_cedula`,`cat_id_estado`)
-	   VALUES (sig,nombre,cantidad,fecha,cedula,estado);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_select`(in id int)
-BEGIN
-	SELECT * FROM detalle where det_id=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_update`(in id int, in nombre int,in cantidad int,in fecha date,in cedula int,in estado int)
-BEGIN
-UPDATE detalle SET
-	`cat_id` = nombre,
-	`det_cantidad` = cantidad,
-    `det_fechacad` = fecha,
-    `don_cedula` = cedula,
-    `cat_id_estado` = estado
-     WHERE `det_id` = id;
-     SELECT * FROM detalle WHERE  `det_id` = id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_delete`(in detalle_id int, in usos_id int)
-BEGIN
-	DELETE FROM detalle_usos  WHERE `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_insert`(in detalle_id int,in usos_id int)
-BEGIN
-       INSERT INTO detalle_usos (`detalle_det_id`,`usos_uso_id`)
-	   VALUES (detalle_id,usos_id);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_select`(in detalle_id int,in usos_id int)
-BEGIN
-	SELECT * FROM detalle_usos where  detalle_det_id = detalle_id and usos_uso_id = usos_id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_update`(in detalle_id int, in usos_id int)
-BEGIN
-UPDATE detalle_usos SET
-	`detalle_det_id` = detalle_id,
-	`usos_uso_id` = usos_id
-     WHERE `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
-     SELECT * FROM detalle_usos WHERE  `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_delete`(in id int)
-BEGIN
-	DELETE FROM donaciones  WHERE `don_cedula` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_insert`(in cedula int,in nombre varchar(100),in telefono int,in correo varchar(100) ,in direccion varchar(100),in fecha date)
-BEGIN
-       INSERT INTO donaciones (`don_cedula`,`don_nombre`,`don_telefono`,
-		`don_correo`,`don_direccion`,`don_fecha`)
-	   VALUES (cedula,nombre,telefono,correo,direccion,fecha);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_select`(in id int)
-BEGIN
-	SELECT * FROM donaciones where don_cedula=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_update`(in cedula int,in nombre varchar(100),in telefono int,in correo varchar(100) ,in direccion varchar(100),in fecha date)
-BEGIN
-UPDATE donaciones SET
-	`don_cedeula` = cedula,
-	`don_nombre` = nombre,
-    `don_telefono` = telefono,
-    `don_correo` = correo,
-    `don_direccion` = direccion,
-    `don_fecha` = fecha
-     WHERE `don_cedula` = cedula;
-     SELECT * FROM donaciones WHERE  `don_cedula` =cedula;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_delete`(in id int)
-BEGIN
-	DELETE FROM usos  WHERE `uso_id` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_insert`(in cantidad int,in descripcion varchar(200),in cedula int)
-BEGIN
-       declare sig int;
-	   select max(uso_id) into sig from usos; 
-        set sig=sig+1;
-       INSERT INTO usos (`uso_id`,`uso_cantidad`,`uso_descripcion`,
-		`usu_cedula`)
-	   VALUES (sig,cantidad,descripcion,cedula);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_select`(in id int)
-BEGIN
-	SELECT * FROM usos where uso_id=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_update`(in id int,in cantidad int,in descripcion varchar(200),in cedula int)
-BEGIN
-UPDATE usos SET
-	`uso_cantidad` = cantidad,
-	`uso_descripcion` = descripcion,
-    `usu_cedula` = cedula
-     WHERE `uso_id` = id;
-     SELECT * FROM usos WHERE  `uso_id` = id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_delete`(in id int)
-BEGIN
-	DELETE FROM usuarios  WHERE `usu_cedula` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_insert`(in cedula int,in nombre varchar(50) ,in apellido varchar(50),in telefono varchar(10) ,in usuario varchar(45),in contraseña varchar(45))
-BEGIN
-       INSERT INTO usuarios (`usu_cedula`,`usu_nombre`,`usu_apellido`,
-		`usu_telefono`,`usu_usuario`,`usu_contraseña`)
-	   VALUES (cedula,nombre,apellido,telefono,usuario,contraseña);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_select`(in id int)
-BEGIN
-	SELECT * FROM usuarios where usu_cedula=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_update`(in cedula int,in nombre varchar(50) ,in apellido varchar(50),in telefono varchar(10) ,in usuario varchar(45),in contraseña varchar(45))
-BEGIN
-UPDATE usuarios SET
-	`usu_cedula` = cedula,
-	`usu_nombre` = nombre,
-    `usu_apellido` = apellido,
-    `usu_telefono` = telefono,
-    `usu_usuario` = usuario,
-    `usu_contraseña` = contraseña
-     WHERE `usu_cedula` = cedula;
-     SELECT * FROM usuarios WHERE  `usu_cedula` = cedula;
-END$$
-
-DELIMITER ;
-USE `invbio_ist17j` ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_delete`(in padre int)
-BEGIN
-	DELETE FROM catalogo  WHERE `cat_id` = padre;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_insert`(in nombre varchar(100),in des varchar(200),in padre int,in codigo varchar(200))
-BEGIN
-declare sig int;
-  IF exists (SELECT * FROM CATALOGO WHERE CAT_NOMBRE=nombre and cat_padre=padre) then
-     select 1;
-  else   
-	   select max(cat_id) into sig from catalogo; 
-        set sig=sig+1;
-       INSERT INTO catalogo (`cat_id`,`cat_nombre`,`cat_descripcion`,
-		`cat_padre`,`cat_codigo`)
-	   VALUES (sig,nombre,des,padre,codigo);
-       select 0;
-       end if;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_select`(in padre int)
-BEGIN
-	SELECT * FROM catalogo where cat_padre=padre;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_catalogo_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_catalogo_update`(in op int,in nombre varchar(100),in des varchar(200),in padre int,in codigo varchar(200))
-BEGIN
-UPDATE catalogo SET
-	`cat_nombre` = nombre,
-	`cat_descripcion` = des,
-    `cat_codigo` = codigo
-     WHERE `cat_id` = padre;
-     SELECT * FROM CATALOGO WHERE  `cat_id` = padre;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_delete`(in id int)
-BEGIN
-	DELETE FROM detalle  WHERE `det_id` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_insert`(in nombre int,in cantidad int ,in fecha date,in cedula int ,in estado int)
-BEGIN
-declare sig int;
-	   select max(det_id) into sig from detalle; 
-        set sig=sig+1;
-       INSERT INTO detalle (`det_id`,`cat_id`,`det_cantidad`,
-		`det_fechacad`,`don_cedula`,`cat_id_estado`)
-	   VALUES (sig,nombre,cantidad,fecha,cedula,estado);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_select`(in id int)
-BEGIN
-	SELECT * FROM detalle where det_id=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_update`(in id int, in nombre int,in cantidad int,in fecha date,in cedula int,in estado int)
-BEGIN
-UPDATE detalle SET
-	`cat_id` = nombre,
-	`det_cantidad` = cantidad,
-    `det_fechacad` = fecha,
-    `don_cedula` = cedula,
-    `cat_id_estado` = estado
-     WHERE `det_id` = id;
-     SELECT * FROM detalle WHERE  `det_id` = id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_delete`(in detalle_id int, in usos_id int)
-BEGIN
-	DELETE FROM detalle_usos  WHERE `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_insert`(in detalle_id int,in usos_id int)
-BEGIN
-       INSERT INTO detalle_usos (`detalle_det_id`,`usos_uso_id`)
-	   VALUES (detalle_id,usos_id);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_select`(in detalle_id int,in usos_id int)
-BEGIN
-	SELECT * FROM detalle_usos where  detalle_det_id = detalle_id and usos_uso_id = usos_id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_detalle_usos_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_detalle_usos_update`(in detalle_id int, in usos_id int)
-BEGIN
-UPDATE detalle_usos SET
-	`detalle_det_id` = detalle_id,
-	`usos_uso_id` = usos_id
-     WHERE `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
-     SELECT * FROM detalle_usos WHERE  `detalle_det_id` = detalle_id and `usos_uso_id` = usos_id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_delete`(in id int)
-BEGIN
-	DELETE FROM donaciones  WHERE `don_cedula` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_insert`(in cedula int,in nombre varchar(100),in telefono int,in correo varchar(100) ,in direccion varchar(100),in fecha date)
-BEGIN
-       INSERT INTO donaciones (`don_cedula`,`don_nombre`,`don_telefono`,
-		`don_correo`,`don_direccion`,`don_fecha`)
-	   VALUES (cedula,nombre,telefono,correo,direccion,fecha);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_select`(in id int)
-BEGIN
-	SELECT * FROM donaciones where don_cedula=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_donaciones_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_donaciones_update`(in cedula int,in nombre varchar(100),in telefono int,in correo varchar(100) ,in direccion varchar(100),in fecha date)
-BEGIN
-UPDATE donaciones SET
-	`don_cedeula` = cedula,
-	`don_nombre` = nombre,
-    `don_telefono` = telefono,
-    `don_correo` = correo,
-    `don_direccion` = direccion,
-    `don_fecha` = fecha
-     WHERE `don_cedula` = cedula;
-     SELECT * FROM donaciones WHERE  `don_cedula` =cedula;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_delete`(in id int)
-BEGIN
-	DELETE FROM usos  WHERE `uso_id` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_insert`(in cantidad int,in descripcion varchar(200),in cedula int)
-BEGIN
-       declare sig int;
-	   select max(uso_id) into sig from usos; 
-        set sig=sig+1;
-       INSERT INTO usos (`uso_id`,`uso_cantidad`,`uso_descripcion`,
-		`usu_cedula`)
-	   VALUES (sig,cantidad,descripcion,cedula);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_select`(in id int)
-BEGIN
-	SELECT * FROM usos where uso_id=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usos_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usos_update`(in id int,in cantidad int,in descripcion varchar(200),in cedula int)
-BEGIN
-UPDATE usos SET
-	`uso_cantidad` = cantidad,
-	`uso_descripcion` = descripcion,
-    `usu_cedula` = cedula
-     WHERE `uso_id` = id;
-     SELECT * FROM usos WHERE  `uso_id` = id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_delete
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_delete`(in id int)
-BEGIN
-	DELETE FROM usuarios  WHERE `usu_cedula` = id;
-		SELECT 'BORRADO';
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_insert
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_insert`(in cedula int,in nombre varchar(50) ,in apellido varchar(50),in telefono varchar(10) ,in usuario varchar(45),in contraseña varchar(45))
-BEGIN
-       INSERT INTO usuarios (`usu_cedula`,`usu_nombre`,`usu_apellido`,
-		`usu_telefono`,`usu_usuario`,`usu_contraseña`)
-	   VALUES (cedula,nombre,apellido,telefono,usuario,contraseña);
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_select
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_select`(in id int)
-BEGIN
-	SELECT * FROM usuarios where usu_cedula=id;
-END$$
-
-DELIMITER ;
-
--- -----------------------------------------------------
--- procedure sp_usuarios_update
--- -----------------------------------------------------
-
-DELIMITER $$
-USE `invbio_ist17j`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuarios_update`(in cedula int,in nombre varchar(50) ,in apellido varchar(50),in telefono varchar(10) ,in usuario varchar(45),in contraseña varchar(45))
-BEGIN
-UPDATE usuarios SET
-	`usu_cedula` = cedula,
-	`usu_nombre` = nombre,
-    `usu_apellido` = apellido,
-    `usu_telefono` = telefono,
-    `usu_usuario` = usuario,
-    `usu_contraseña` = contraseña
-     WHERE `usu_cedula` = cedula;
-     SELECT * FROM usuarios WHERE  `usu_cedula` = cedula;
-END$$
-
-DELIMITER ;
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-USE `bdd_biotecnologia`
+  UNIQUE KEY `login_UNIQUE` (`usu_login`),
+  KEY `usu_per_idx` (`per_id`),
+  CONSTRAINT `usu_per` FOREIGN KEY (`per_id`) REFERENCES `permisos` (`per_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'ZZZZADMINISTRADOR DEL SISTEMA','-1','782541239','yosdado@gmail.com','Administrador','admin','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(8,'AGUILAR ARIAS DIANA ELIZABETH','1716004864','996450999','','DOCENTE','DAGUILAR','825f11613c4f2f302f0680b1939e665db3422e33cd0336067dcd170933bb39d6',1,0),(9,'AGUIRRE CHAGNA VICTOR HUGO','1002617809','998736511','','DOCENTE','VAGUIRRE','57c13e45c8f50247db496d995d41586b5c30434025bed4a3cf19165e3d643f14',1,0),(10,'ALVAREZ JARAMILLO EDISON ROBERTO','1002046231','992396086','','DOCENTE','EALVAREZ','03c057c438b83dc32fbe43d1e901bfa01a071799a0a9a51515732e09dc5e9597',1,0),(11,'ALVAREZ JIMENEZ JAIRO ALEXIS','1003075957','994869142','','DOCENTE','JALVAREZ','4069684a068778f207a0653e472b1d02a95fefa9f30b86aed688908e6be9cb46',1,0),(12,'ANDRADE COLLAHUAZO JULIO ADOLFO','1001412616','997682196','','DOCENTE','JANDRADE','b6695169a9807d6196abffd94dc36118021836efe7c6582b6de01c0796c888d0',1,0),(13,'ARCINIEGA ROCHA RICARDO PATRICIO','1003011200','988010437','','DOCENTE','RARCINIEGA ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(14,'ARICHABALA VALLEJOS DIANA ELIZA','0104645494','991960965','','DOCENTE','DARICHABALA','68e8141a7747fc32d27c4589a16df6cd6f3a28f45dab08288ed292f503fd187e',1,0),(15,'ARROYO VACA CRISTIAN SEBASTIAN','1003247812','968700913','','DOCENTE','CARROYO','589944af8df0e172a210777b87dc069752855826ce3fa0c12d5df775dacd6983',1,0),(16,'AULESTIA RUEDA ROBERTO','1003268503','995881177','','DOCENTE','RAULESTIA ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(17,'AYALA PAREDES JOHANNA PAOLA','1003320940','984019817','','DOCENTE','JAYALA','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(18,'BARREZUETA GARCIA DORIS MARLLEY','1001791845','980840124','','DOCENTE','DBARREZUETA','53586abba7aa75443026314420dc103b12971eb3e06e0b62e2c21638adbf701f',1,0),(19,'BARRIGAS REVELO DIEGO ALEJANDRO','1003560339','995764426','','DOCENTE','DBARRIGAS','8a79158207209468cef41b6844bae34783ed2348c292b0cdbb642b3b5a6bcd26',1,0),(20,'BURBANO GARCIA JHOMAIRA LORENA','0401198361','991461215','','DOCENTE','JBURBANO','3fc72f60fcffe8438d6339bfb6d60d403a02f54525a81aa80d1cf0656876010c',1,0),(21,'CABRERA ZULETA PAOLA CAROLINA','1002682605','991641710','','DOCENTE','PCABRERA','8106b16ff61529c0637edc078e424440450e74e97b6092c4fb91d115ab165b28',1,0),(22,'CADENA CATA\\\\u00d1A MARLON RAFAEL','1716223571','998167006','','DOCENTE','MCADENA','b829ace7eb4a9475c0e633b42356790acc1c05c8af72f3fc7628b55774550644',1,0),(23,'CAIZA QUISHPE LUIS ARMANDO','1002861027','988431596','','DOCENTE','LCAIZA','03c057c438b83dc32fbe43d1e901bfa01a071799a0a9a51515732e09dc5e9597',1,0),(24,'CALDERON RODRIGUEZ FLORINDA GEOCONDA','1002418661','985658996','','DOCENTE','FCALDERON','e58fd34671717f65a5e371ad3ac0b2431a354c37de92b9b97a135a866778f7d3',1,0),(25,'CARRASCAL GARCIA JORGE','1756733968','979420931','','DOCENTE','JCARRASCAL','f6f8cc423eba4a7bb052da7e316fdf7d0ec3fe312de04e240bb441ef93af0ff5',1,0),(26,'CASTILLO CAICEDO PAMELA ALEXANDRA','1002706339','980112780','','DOCENTE','PCASTILLO','5fd0980cdf297528843c3a00242b51829696998062cf7b55f04f10d8cdaff12c',1,0),(27,'CASTILLO MESTANZA ANIBAL GONZALO','1001467891','996933275','','DOCENTE','ACASTILLO','ad85112973e3987415bf6709e3aee93a03207b066437a8c0983cb46e435f8072',1,0),(28,'CERVANTES TAFUR HENRY DANIEL','1002581583','984970328','','DOCENTE','HCERVANTES ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(29,'CHAMORRO PORTILLA MARIA CRISTINA','1002867594','986209244','','DOCENTE','MCHAMORRO','f33d4bd08cb434a4bc47c8013b863cded66a01141ec583f16552556cc8521d79',1,0),(30,'CHAVEZ RUALES JENNY MARITZA','1003344577','985530624','','DOCENTE','JCHAVEZ','45f7db6e3c065474fa172e7a87e5e71d308b49ce3e4f4521151386bde5683c4d',1,0),(31,'CHECA RAMIREZ ANA ELIZABETH','1002509998','999042809','','DOCENTE','ACHECA','cacefb43daf354ff623999a86d5fd5a48c5beaf5574069e06ef1c638db9fba71',1,0),(32,'DIAZ AYALA JOFFRE OMAR','1001650348','993897359','','DOCENTE','JDIAZ','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(33,'ENRIQUEZ CUPUERAN ALVARO ALFONSO','1001770146','999195298','','DOCENTE','AENRIQUEZ','c659677e3e3a52a0e5c8c41b8b1297dd235894486127106b45186b3c258a74ab',1,0),(34,'ERAZO CHAMORRO VANESSA CRISTINA','1003142781','999323355','','DOCENTE','VERAZO ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(35,'FLORES BENITEZ FERNANDO RENE','1002950465','985354118','','DOCENTE','FFLORES','5e9d61a98822fdc0be3351e9a8625525fc4f1cf2077c63b68cdf051e6b6a1686',1,0),(36,'FLORES BOSMEDIANO EDISON MARCOS','1003431986','993430040','','DOCENTE','EFLORES','96dfd7b3e4a67ba4ed6393de68661165b6216426d22ce867deb108ad4cb4e0eb',1,0),(37,'FRAGA PORTILLA JORGE ANDRES','1002735031','997233083','','DOCENTE','JFRAGA','c28dceb9200ee88d93853cbeb4ad0820c16daf0051d0a13a78037fad34da8f3d',1,0),(38,'GALVEZ CHIRIBOGA LUIS MIGUEL','1003594460','987257717','','DOCENTE','LGALVEZ','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(39,'GARCIA LOPEZ LETTY MAGDALENA','1718514753','996023448','','DOCENTE','LGARCIA','f51d699c1611a97a3c866d30a1c326dbc16b7412343630e29fb142a8e7d696db',1,0),(40,'GODOY TRUJILLO PAMELA ESTEFANIA','1003294566','985420596','','DOCENTE','PGODOY','76e4cb91f308a6785114fc13f3290cddd6d34fa3fbfe487afbede68cdd0e0dfc',1,0),(41,'GRANJA AGUINAGA LUCIO ALBERTO','1001628435','981810645','','DOCENTE','LAGRANJA','50342324ac4b7fa690c465943f6693419bea75e749796594ee5dd4cb5e1e6247',1,0),(42,'GRANJA ALVEAR LOURDES ARACELI','1003444039','987455818','','DOCENTE','AGRANJA','80b40bf3492235edf447d060edbc21b27026242fe8d808364ccc8fc8a1c77497',1,0),(43,'GUERRERO CABEZAS MIGUEL ANGEL','1002668125','992150617','','DOCENTE','MGUERRERO ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(44,'GUEVARA GUEVARA MARCELO','1002959334','990898754','','DOCENTE','MGUEVARA','d2761b107c45d7702170242ab71962b603596a87fcd541e840b02f4208a90f20',1,0),(45,'HERRERA MANRIQUE JANNYNE PAMELA','1004007744','989599522','','DOCENTE','JHERRERA','14c3102a39bd5c6257a8f36c5939778720e3940bdb9a3823c62931d6023c564e',1,0),(46,'HIDALGO HIDALGO BOLIVAR JAVIER','1002341848','968382014','','DOCENTE','BHIDALGO','6aca06190b648724cd576577450f97a7e91ce960d3332edf46c780a6f4534cf0',1,0),(47,'HIDALGO SALAZAR JEFFERSON FABRICIO','1003537691','995443490','','DOCENTE','JHIDALGO','b9704481924c02c517e994bcf0870af984e73dc2b191c7b55b6c897b7bc71f63',1,0),(48,'LANDAZURI AGUIRRE SINTHYA CAROLINA','1715549307','984486905','','DOCENTE','SLANDAZURI','0068199537746ae38776ddd714a6babe46ff6f779e5d869f46611c992696872d',1,0),(49,'LARA ARELLANO MAURICIO ISRAEL','1003529177','991434400','','DOCENTE','MLARA','baf60dfdc66597f648051e755433ed15b5204c558a8fbc9b9d0aa67715247811',1,0),(50,'LOPEZ GUERRA MILTON BERTULFO','1000969608','999387801','','DOCENTE','MLOPEZ','6f2667486342989142b3c1e31a2a9fce0242c10f1de37bbe5ce1cefb5e4de0af',1,0),(51,'LUNA UNDA LEONARDO DAVID','1002876041','999787799','','DOCENTE','LLUNA','9337ec4c80064e9022eca705bf90c9a8b169dade4b1e336fc0300c9d0efd7c40',1,0),(52,'MARTINEZ TORRES PEDRO JOSE','1003662218','992752175','','DOCENTE','PMARTINEZ','e7a22ba3ab2866890149f661970e8145a14593c591122e295c996f5b3eefeb4a',1,0),(53,'MENDEZ CARVAJAL ERIKA PRICILA','1003754197','986582234','','DOCENTE','EMENDEZ ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(54,'MEZA CARTAGENA JHONATAN FABRICIO','1004228803','969867484','','DOCENTE','JMEZA ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(55,'MONTALVO LOZA CHRISTIAN HERNAN','1002922464','983318104','','DOCENTE','CMONTALVO','48ed82122b7419ee93be7ec0014d35a94a1c218e0ea895d08325d4c116863195',1,0),(56,'MONTENEGRO RIVERA ANA MERCEDES','0401401484','958970278','','DOCENTE','AMONTENEGRO','28f765cee73b405547d84847cf407fd2c722325b41754e60a3b3a5329ed84769',1,0),(57,'NARVAEZ ONOFRE JOHANNA ANGELA','1002853495','995327958','','DOCENTE','JNARVAEZ','ba36b97a41e7faf742ab09bf88405ac04f99599a',1,0),(58,'NARVAEZ QUINTEROS JOSE LUIS','1002501466','991451230','jlnarvaez@ist17dejulio.edu.ec','DOCENTE','JLNARVAEZ','8696c14d36eb1f630165c3af3b729981626b13ca3f898a720393abcce7bce55d',1,0),(59,'NUÑEZ SILVA BOLIVAR GUALBERTO','0602182883','991897853','','DOCENTE','BNUNIEZ','fbaa27b78f398327fdc8c5f41c9bcbbe5bdc8934283ce1ec98540f8ebc7e1dfb',1,0),(60,'OBANDO QUITO ROMEL FABIAN','1718305814','959192783','','DOCENTE','ROBANDO','47f57a93d8f83df6d159ad6e67e46c91995b63e6cf1678d7e30535ffbd459873',1,0),(61,'ORTEGA LOZA FERNANDO WLADIMIR','1002635793','981846427','','DOCENTE','FORTEGA ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(62,'OTERO POTOSI SANTIAGO ANDRES','1003109277','998341210','','DOCENTE','SOTERO','6b11b47b030cc2eed2d947287a6c93bfde15b5e2aa4a6cfec28c28f227deb5dd',1,0),(63,'PEREZ VILLACIS CRISTINA ALEXANDRA','1803602224','999964943','','DOCENTE','CPEREZ','71e6bbde5e0126907db088f7585a03ab30bb6fa778af54431b319a9f87f23513',1,0),(64,'PINEDA MAIGUA DIEGO','1002454708','994597207','','DOCENTE','DPINEDA','1fd9a6310396a584fbb2aae668aab53c77f232eebcaeaac1c71306a019109c04',1,0),(65,'PINTO AYALA SILVIA LORENA','1003567912','998880740','','DOCENTE','SPINTO','3166e520daaab0cf3f0638df7502d2e010cbe06bdf20e8e118866f56586a025b',1,0),(66,'POZO CASTILLO FRANCISCO','0401126636','994201976','','DOCENTE','FPOZO','03c057c438b83dc32fbe43d1e901bfa01a071799a0a9a51515732e09dc5e9597',1,0),(67,'POZO DIAS REINALDO RAMIRO','1002097630','989602524','','DOCENTE','RPOZO','90a3b1c8c0039d2bfac8e3a00989a23bdfdf002779dbb599aa12275c749f7a22',1,0),(68,'QUINATOA OSEJOS MONICA ALEXANDRA','1718005612','997610617','','DOCENTE','MQUINATOA','2f5199cc0969a2aade20020f64c176531238093b5697a0996bc9fc8d4d9bd611',1,0),(69,'QUINGLA GARRIDO CARLOS ANDRES','1003239306','989792375','','DOCENTE','CQUINGLA','ae209508aab32b2cd621de693b2bdeb58a84fae707c795c6fd2e42e923c359eb',1,0),(70,'RAMOS CHAVEZ MARIA CAROLINA','1003548615','939392419','','DOCENTE','MRAMOS','c1b755d45d249f697d41f3d5860b237f50256617d53e0b3d9ec9fe069a518fde',1,0),(71,'RODRIGUEZ PORTILLO AURA GRACIELA','1002710562','995625840','','DOCENTE','ARODRIGUEZ','e29addfef38de630cc90e4f1e1e13062c3637adfc046ab64205d53791ebba38b',1,0),(72,'ROLDAN ROBLES EDWIN SAUL','1001293560','994283214','','DOCENTE','EROLDAN','0b80c840b3218a5f4e71d9f521a5ac0678eab99bcc2b9a3da1f2b2079de526ec',1,0),(73,'ROSERO MONTALVO PAUL DAVID','1003378039','969432370','','DOCENTE','PROSERO ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(74,'ROSERO OBANDO ALVARO FRANCISCO','1003171525','984189983','','DOCENTE','AROSERO','87bb74a4b681b7cbc596b2867c89c0eba65dbf621a1ff41e4ac2157511c57094',1,0),(75,'RUIZ CRUZ MIGUEL ALEJANDRO','1002513107','999049717','','DOCENTE','MRUIZ','576efb4dd260c837b70b41e6a1cff64e0aa3f0c9a215759bb83407b065b781b6',1,0),(76,'RUIZ PROAÑO JERALDIN MARICELA','1004475958','980853009','','DOCENTE','JRUIZ','a121bad352ec571085a30d79f44d1e74b81c110a46b2c4c37ea6d4ed79dd250b',1,0),(77,'SANCHEZ VILA TANIA YADIRA','1002524161','998723385','','DOCENTE','TSANCHEZ','a6c619e194341f3a4d1b31a6009ee40d1bfdce4293c0cfec4c6dc0f42e07b171',1,0),(78,'SANDOVAL PILLAJO LOURDES LILIAN','1002688339','969782095','','DOCENTE','LSANDOVAL','0125d7e6424e19e90f81281a8a6872d96276121fa7086c454ef775ebc9fed748',1,0),(79,'SANTOS CORREA LUIS ALBERTO','1003670310','993922146','','DOCENTE','LSANTOS','86de2500c162f7ee3a0e08a73190063a2e8899ee03eb70cf1ce87a95cf77c743',1,0),(80,'SILVA SEGOVIA MARCO POLO RODRIGO','0501601835','962891015','','DOCENTE','MSILVA ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(81,'TEJADA HUERTAS LUIS ALFONSO','1703784007','999602367','','DOCENTE','LTEJADA','a06cd5d03086d145c34ebd80590db5049f970f21a0b0d2012c1c1c5fa712c805',1,0),(82,'TELLO GUZMAN JAVIER ROSALINO','1003137898','996408148','','DOCENTE','JTELLO','03c057c438b83dc32fbe43d1e901bfa01a071799a0a9a51515732e09dc5e9597',1,0),(83,'TOAPANTA LEMA JUAN ALEJANDRO','1003543988','961326020','','DOCENTE','ATOAPANTA','b14dbd9091a5490a183480136171a1942c96eb9a01b68cdb9513a441e1f63fff',1,0),(84,'TORRES ANDRADE FELIPE SANTIAGO','1003702147','984196953','','DOCENTE','FTORRES','25494550e8b5c975b7c66d64a69c88dee841600502549002a6da3880cfb3829e',1,0),(85,'TORRES GORDILLO MAURO ESTUARDO','0','982246810','','DOCENTE','MTORRES ','ba36b97a41e7faf742ab09bf88405ac04f99599a',0,0),(86,'TORRES REYES JESSICA XIMENA','1003374525','999767306','','DOCENTE','JTORRES','c98db0a68dbea92effffb0fc934dbef2876718f89a79600bd2b4856d983fb181',1,0),(87,'UBIDIA VASCONEZ RENATO ALONSO','1723264774','984858605','','DOCENTE','RUBIDIA','cf861e77d069812b4e7972c9341c7312ebb7b453dcbe3413e46c804365a5f39f',1,0),(88,'YASELGA AUZ EDISON MIGUEL','1002964862','999919573','','DOCENTE','EYASELGA','a4e8ad41bb88bddabd5fa4462f78670146b072d1c63e2170b8090dca77e7680f',1,0),(89,'YEPEZ RIVADENEIRA JONATHAN DANIEL','1003071915','996234432','','DOCENTE','JYEPEZ','916596c315e47fbcddc0711eeb631d6bcbd2ebec988e4fe1c3eafb4954847cc0',1,0),(90,'ZURITA MIRANDA ANDREA ESTEFANIA','1003096698','999238991','','DOCENTE','AZURITA','287a1f7a0cd1f4ac5645068856476f1c0f658a6dfb6a4a984b711bb9d970207f',1,0),(151,'CASTRO TEANGA SANTIAGO XAVIER','1002756177','','','','scastro','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(152,'PIJAL ROJAS JOSE ANTONIO','1001392040','','','','jrojas','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(153,'PINZON BARRIGA LUIS ENRIQUE','0915028062','','','','lpinzon','a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',1,0),(154,'BALLESTEROS JEREZ JESSICA GUADALUPE','1804392338','','jballestero@ist17dejulio.ecu.ec','DOCENTE','jballesteros','9b0f8efc5bf5a72c85e44b2b46bea8db86a32ab6a3144539687e130c7bcdf9d5',1,0),(156,'BOSMEDIANO CARDENAS CARLOS PATRICIO','1003487954','','','DOCENTE','CBOSMEDIANO','1e9884c71b316c5ea45e37a98230fc830d965225fa4bcdb4b318351d63f7eda2',1,0),(157,'DELGADO RODRIGUEZ  DENNIS MARTIN','1001671799','','','DOCENTE','DDELGADO','7adf3fc0d53769dc11dd1756179a0b74a07379fd466a691e55523dfa0421ab92',1,0),(158,'FLORES ORTEGA PATRICIO MIJAHIL','1003368436','','','DOCENTE','PFLORES','2b25423f35b4c9a74751feaa1ff80b48bd2a7b8e14767937180698a8bf8a4405',1,0),(159,'GARRIDO MONTENEGRO MAURICIO SANTIAGO','502912884','','','DOCENTE','MGARRIDO','51ddfd5042c22805ba183edf55f9d7128196adc89432b2c7caa065847fc1c8c6',1,0),(160,'ROSERO GARCÍA JHONATHAN FABRICIO','400999496','','','DOCENTE','JROSERO','53421d44357fecb8cf2a4f327f98cd692f7ed4efc9b09a7a53f14e8cc843f3b5',1,0),(161,'RUANO GONZALEZ EDISON ERNESTO','1001543089','','','DOCENTE','ERUANO','c3fab0a80373c85ccaa2e12fecf6aa3426e66564937e0b4b184e3d6ec0366ada',1,0),(162,'JARA CUASQUI LUIS PATRICIO','1001769353','','','DOCENTE','LJARA','ecc5342f9fc226de06836c0ae6d545130a4b82fa9cf523037d2c35794f47e6fd',1,0),(163,'MUÑOZ LANDAZURI JUAN HEBERTH','1001418381','','','DOCENTE','JMUNIOZ','af4c2143119c74dc8b953a6214d4622c9903aa7cdcccf1a56c5c4157a9db9b24',1,0),(164,'FLORES AUPAZ SANTIAGO IVAN','401465844','','','DOCENTE','SFLORES','cc7ac3a5e9b96dcc608e957fa05429315485fabf6986153f51e91bd5fde1af69',1,0),(165,'ERAZO CHAFUEL DIEGO ORLANDO','1721879490','','','DOCENTE','DERAZO','08962be293eb0c9c1c4175c427e984a35a60dee1dcde7b977739deec544a0ce9',1,0),(167,'GARCIA CAMPOS LUIS ALFONSO','1001902822','','','','LAGARCIA','f51d699c1611a97a3c866d30a1c326dbc16b7412343630e29fb142a8e7d696db',1,0),(168,'GARCIA CARTAGENA YADIRA ESTEFANIA','1003983911','991451230','jlnarvaez@ist17dejulio.edu.ec','DOCENTE','YGARCIA','f51d699c1611a97a3c866d30a1c326dbc16b7412343630e29fb142a8e7d696db',1,0),(175,'ROSERO LOPEZ ANDREA SAMANTA','0','0','','DOCENTE','SROSERO','8ea28ff088f3eef1ed30397b8bc98e6465c4b9a15753035b557f9825571b9041',1,0),(177,'CISNEROS CABRERA PABLO LEONIDAS','1001965290','0','pcisneros@ist17dejulio.edu.ec','DOCENTE','pcisneros','b264dd7f0fe0c56e9a1318349d798a1c2520fe36b51548394e095aa091df4355',1,0),(178,'RODRIGUEZ GUEVARA ADRIAN MARCELO','1003632369','0','amrodriguez@ist17dejulio.edu.ec','DOCENTE','amrodriguez','c72ead07dd3963de388b07ca71882fbe737f37120043cb38b9e427a9a560a3af',1,0),(179,'POZO JIMÉNEZ ANDERSON ENRIQUE','0401476890','','','PRESIDENTE CIRCULO E','APOZO','23e820dd07fa3b8eaa89d70db273831277ce2b2af603f580e7286f65a7693ce2',1,0),(180,'RIVADENEIRA ROSERO YADIRA VERONICA','1003885942','','','ADMINISTRADOR BAR','YRIVADENEIRA','3ab7a9a0eef2b90cffc2b8cf7a91f7df408db2bb779100dc0173d2790b4f200f',1,0),(181,'CHUQUIN RIVERA ISRAEL ALEJANDRO','1003306139','0','','DOCENTE','ICHUQUIN','6e06183b887eabadb047c117b6e6a974eaf048ce9a05a0b63888ac821380321b',1,0),(182,'CHUQUIN RIVERA ALEJANDRO ISRAEL','1003306139','','','DOCENTE','ACHUQUIN','1ff75123c5d5fd4ebe108c6fe2236a6e59a6a81791d5ef385838c42f2cc58f0d',1,0);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2022-11-02 16:14:51
