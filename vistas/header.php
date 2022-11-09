@@ -62,7 +62,7 @@ if (strlen(session_id())<1)
              
                 <p>
                   IST17J
-                  <small>Noviembre 2021</small>
+                  <small>Noviembre 2022</small>
                 </p>
               </li>
               <!-- Menu Footer-->

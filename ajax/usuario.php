@@ -36,7 +36,7 @@ switch ($_GET["op"]) {
 		$_SESSION['usu_correo']=$fetch->usu_correo;
 		$_SESSION['usu_cedula']=$fetch->usu_cedula;
 	   
-		$marcados=$usuario->listarmarcados($fetch->usu_id);
+		$marcados=$usuario->listarp($fetch->usu_id);
 			
 
  		//declaramos el array para almacenar todos los permisos
