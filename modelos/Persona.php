@@ -39,6 +39,7 @@ public function listarp(){
 	$sql="SELECT * FROM persona WHERE tipo_persona='Proveedor'";
 	return ejecutarConsulta($sql);
 }
+ 	
 public function listarc(){
 	$sql="SELECT * FROM persona WHERE tipo_persona='Cliente'";
 	return ejecutarConsulta($sql);

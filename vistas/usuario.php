@@ -29,7 +29,7 @@ if ($_SESSION['Acceso']==1) {
 <div style="width:900" id="listadoregistros">
   <table id="tbllistado"  class="table table-striped table-bordered table-condensed table-hover"> 
     <thead>
-      <th></th>
+      <th>id</th>
       <th>Nombre</th>
       <th>Usuario</th>
       <th>Cédula</th>
@@ -46,7 +46,7 @@ if ($_SESSION['Acceso']==1) {
   <form action="" name="formulario" id="formulario" method="POST">
     <div class="form-group col-lg-12 col-md-12 col-xs-12">
       <label for="">Nombre(*):</label>
-      <input class="form-control" type="text" name="usu_id" id="usu_id">
+      <!--<input class="form-control" type="text" name="usu_id" id="usu_id">-->
       <input class="form-control" type="text" name="usu_nombre" id="usu_nombre" maxlength="100" placeholder="Nombre" required>
     </div>
    

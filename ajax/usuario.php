@@ -93,40 +93,44 @@ switch ($_GET["op"]) {
 		  //redireccionamos al usu_login
 	header("Location: ../index.php");
 	break;
-	
- case 'listarp':
-	$rspta=$usuario->listarp($_SESSION['usu_id']);
-	$data=Array();
-	while ($reg=$rspta->fetch_object()) {
-		$dias=0;
-		$data[]=array(
-			"0"=>'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->per_id.')"><i class="fa fa-pencil"></i></button>',
-			"1"=>$reg->motivo,
-			"2"=>$reg->per_fecha,
-			"3"=>$reg->per_fechaini,
-			"4"=>$reg->per_fechafin,
-			"5"=>$reg->per_horaini,
-			"6"=>$reg->per_horafin,
-			"7"=>$dias
-		);
-	}
+		
+	case 'guardaryeditar':
+	if (empty($idpersona)) {
+		$rspta=$usuario->insertar($usu_nombre,$usu_cedula,$usu_telefono,$usu_correo,$usu_cargo,$usu_login,$usu_clave);
+		
+		$rspta=$usuario->insertarper($usu_id,$per_id);
+				echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
 
-	$results=array(
+	}/*else{
+         $rspta=$persona->editar($idpersona,$tipo_persona,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email);
+		echo $rspta ? "Datos actualizados correctamente" : "No se pudo actualizar los datos";
+	}
+		*/
+		break;
+		case 'listar':
+	    $rspta=$usuario->listar();
+		$data=Array();
+
+		while ($reg=$rspta->fetch_object()) {
+			$data[]=array(
+		    "0"=>$reg->usu_id,
+            "1"=>$reg->usu_nombre,
+            "2"=>$reg->usu_cedula,
+            "3"=>$reg->usu_telefono,
+            "4"=>$reg->usu_login,
+            "5"=>$reg->usu_correo,
+			"6"=>"--",
+            "7"=>$reg->usu_condicion     
+              );
+		}
+		$results=array(
              "sEcho"=>1,//info para datatables
              "iTotalRecords"=>count($data),//enviamos el total de registros al datatable
              "iTotalDisplayRecords"=>count($data),//enviamos el total de registros a visualizar
              "aaData"=>$data); 
-	echo json_encode($results);
-	break;
-	case 'combo_motivos':			
-			$rspta = $usuario->obten_motivos(6);
-			while ($reg = $rspta->fetch_object()) {
-				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>';
-			}
-			break;	
-
-
-	
+		echo json_encode($results);
+	    break;
+		
 }
 ?>
 

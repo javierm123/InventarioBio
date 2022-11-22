@@ -10,7 +10,7 @@ define("DB_NAME", "invbio_ist17j");
 define("DB_USERNAME", "root");
 
 //conraseña del usuario de base de datos
-define("DB_PASSWORD", "root");
+define("DB_PASSWORD", "alejo");
 
 //codificacion de caracteres
 define("DB_ENCODE", "utf8");
