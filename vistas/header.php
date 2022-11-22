@@ -98,25 +98,23 @@ if (strlen(session_id())<1)
 <br>
                <?php 
 
-if ($_SESSION['Actas']==1) {
+if ($_SESSION['Actas']==0) {
   echo ' <li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i> <span>Coordinadores</span>
+            <i class="fa fa-folder"></i> <span>Donaciones</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="coordinadores.php"><i class="fa fa-circle-o"></i> Ingresos</a></li>           
-            <li><a href="aulas.php"><i class="fa fa-circle-o"></i> Disp. Aulas</a></li>
-			 <li><a href="ocupacion.php"><i class="fa fa-circle-o"></i> % Ocupación Aulas</a></li>
-			<li><a href="cursos.php"><i class="fa fa-circle-o"></i> Horarios Niveles</a></li>           
+            <li><a href="donadores.php"><i class="fa fa-circle-o"></i> Donadores</a></li>           
+                 
           </ul>
         </li>';
 }
         ?>
                <?php 
-if ($_SESSION['Activos']==1) {
+if ($_SESSION['Activos']==0) {
   echo ' <li class="treeview">
           <a href="#">
             <i class="fa fa-th"></i> <span>Opciones de Docente</span>
@@ -135,7 +133,7 @@ if ($_SESSION['Activos']==1) {
         ?>
         
                <?php 
-if ($_SESSION['Generación']==1) {
+if ($_SESSION['Generación']==0) {
   echo '<li class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Administrativo</span>
@@ -154,7 +152,7 @@ if ($_SESSION['Generación']==1) {
         ?>
 
                              <?php 
-if ($_SESSION['Acceso']==1) {
+if ($_SESSION['Acceso']==0) {
   echo '  <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i> <span>Acceso</span>
@@ -171,7 +169,7 @@ if ($_SESSION['Acceso']==1) {
 }
         ?>  
                                      <?php 
-if ($_SESSION['Reportes']==1) {
+if ($_SESSION['Reportes']==0) {
   echo '     <li class="treeview">
           <a href="#">
             <i class="fa fa-bar-chart"></i> <span>Reportes</span>
@@ -188,7 +186,7 @@ if ($_SESSION['Reportes']==1) {
         ?>  
               
                                                 <?php 
-if ($_SESSION['Custodios']==1) {
+if ($_SESSION['Custodios']==0) {
   echo '<li class="treeview">
           <a href="#">
             <i class="fa fa-bar-chart"></i> <span>Custodios</span>

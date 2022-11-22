@@ -1,8 +1,8 @@
 <?php 
 session_start();
-require_once "../modelos/Usuario.php";
+require_once "../modelos/donadores.php";
 
-$usuario=new Usuario();
+$donadores=new Donadores();
 
 $claveu=isset($_POST["claveu"])? limpiarCadena($_POST["claveu"]):"";
 $usu_id=isset($_POST["usu_id"])? limpiarCadena($_POST["usu_id"]):"";
@@ -14,77 +14,8 @@ $usu_cargo=isset($_POST["usu_cargo"])? limpiarCadena($_POST["usu_cargo"]):"";
 $usu_login=isset($_POST["usu_login"])? limpiarCadena($_POST["usu_login"]):"";
 $usu_clave=isset($_POST["usu_clave"])? limpiarCadena($_POST["usu_clave"]):"";
 
-
 switch ($_GET["op"]) {
-	case 'verificar':
-
-	//validar si el usuario tiene acceso al sistema
-	$logina=$_POST['logina'];
-	$clavea=$_POST['clavea'];
-    
-	//Hash SHA256 en la contraseña
-	$clavehash=hash("SHA256", $clavea);
-   // echo $usuario->verificar($logina, $clavehash);
-	$rspta=$usuario->verificar($logina, $clavehash);
-	$fetch=$rspta->fetch_object();
-	
-	if (isset($fetch)) {	
-		# Declaramos la variables de sesion
-		$_SESSION['usu_id']=$fetch->usu_id;
-		$_SESSION['usu_nombre']=$fetch->usu_nombre;
-		$_SESSION['usu_login']=$fetch->usu_login;
-		$_SESSION['usu_correo']=$fetch->usu_correo;
-		$_SESSION['usu_cedula']=$fetch->usu_cedula;
-	   
-		$marcados=$usuario->listarp($fetch->usu_id);
-			
-
- 		//declaramos el array para almacenar todos los permisos
-		$valores=array();
-
-		//almacenamos los permisos marcados en al array
-		 while ($per = $marcados->fetch_object()) {
-				array_push($valores, $per->per_id);
-			}
-
-		//determinamos lo accesos al usuario
-			in_array(1, $valores)?$_SESSION['Escritorio']=1:$_SESSION['Escritorio']=0;
-			in_array(2, $valores)?$_SESSION['Actas']=1:$_SESSION['Actas']=0;
-			in_array(3, $valores)?$_SESSION['Activos']=1:$_SESSION['Activos']=0;
-			in_array(4, $valores)?$_SESSION['Generación']=1:$_SESSION['Generación']=0;
-			in_array(5, $valores)?$_SESSION['Acceso']=1:$_SESSION['Acceso']=0;
-			in_array(6, $valores)?$_SESSION['Reportes']=1:$_SESSION['Reportes']=0;
-			in_array(7, $valores)?$_SESSION['Custodios']=1:$_SESSION['Custodios']=0;
-			
-			
-
-	  }
- //echo $_SESSION['usu_cedula'];
-	echo json_encode($fetch);
-	break;
-
-	case 'permisos':
-			//obtenemos toodos los permisos de la tabla permisos
-	require_once "../modelos/Permiso.php";
-	$permiso=new Permiso();
-	$rspta=$permiso->listar();
-//obtener permisos asigandos
-	$id=$_GET['id'];
-	$marcados=$usuario->listarmarcados($id);
-	$valores=array();
-
-//almacenar permisos asigandos
-	while ($per=$marcados->fetch_object()) {
-		array_push($valores, $per->per_id);
-	}
-			//mostramos la lista de permisos
-	while ($reg=$rspta->fetch_object()) {
-		$sw=in_array($reg->per_id,$valores)?'checked':'';
-		echo '<li><input type="checkbox" '.$sw.' name="permiso[]" value="'.$reg->per_id.'">'.$reg->per_nombre.'</li>';
-	}
-	break;
-
-	case 'salir':
+case 'salir':
 	   //limpiamos la variables de la secion
 	session_unset();
 
@@ -139,8 +70,8 @@ switch ($_GET["op"]) {
 	echo json_encode($results);
 	break;
 		
-	case 'combo_motivos':			
-			$rspta = $usuario->obten_motivos(6);
+	case 'combo_categoria':			
+			$rspta = $donadores->obten_combo(1);
 			while ($reg = $rspta->fetch_object()) {
 				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>';
 			}
@@ -151,4 +82,3 @@ switch ($_GET["op"]) {
 }
 		
 ?>
-
