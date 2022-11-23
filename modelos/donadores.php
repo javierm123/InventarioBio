@@ -44,7 +44,7 @@ public function verificar($usu_login,$usu_clave){
 }
 */
 public function obten_combo($id){
-	$sql="CALL sp_catalgo_select($id);";
+	$sql="CALL sp_catalogo_select($id);";
 	return ejecutarConsultaSP($sql);
 }
 

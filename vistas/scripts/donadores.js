@@ -12,7 +12,7 @@ function init(){
 //mostramos los combos
   $.post("../ajax/donadores.php?op=combo_categoria", function(r){
    	$("#categoria").html(r);
-   	$('#categoria').selectpicker('refresh');
+   	$("#categoria").selectpicker('refresh');
      });
 	
 }
@@ -93,3 +93,4 @@ function guardaryeditar(e){
 
      limpiar();
 }
+init();

@@ -7,7 +7,7 @@ if (!isset($_SESSION['usu_nombre'])) {
 }else{
 
 require 'header.php';
-if ($_SESSION['Actas']==0) {
+if ($_SESSION['Actas']==1) {
  ?>
     <div class="content-wrapper">
     <!-- Main content -->
@@ -71,9 +71,7 @@ if ($_SESSION['Actas']==0) {
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">(CATEGORÍA*):</label>
-           <ul id="categoria">
-
-      </ul>
+           <select id="categoria" name="categoria" class="form-control selectpicker"></select>
 
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
