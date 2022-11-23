@@ -27,7 +27,7 @@ public function
 }
 	
 public function listar(){
-	$sql="call sp_usuarios()";
+	$sql="call sp_usuarios_select()";
 	return ejecutarConsulta($sql);
 }
 	

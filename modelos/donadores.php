@@ -8,7 +8,7 @@ class donadores{
 public function __construct(){
 
 }
-/*
+
 public function listarp($usu_id){
 	$sql="call sp_listar_permisos($usu_id)";
 	return ejecutarConsultaSP($sql);
@@ -27,26 +27,36 @@ public function
 }
 	
 public function listar(){
-	$sql="call sp_usuarios()";
+	$sql="call sp_detalle_select";
 	return ejecutarConsulta($sql);
 }
 	
-public function listarmarcados(){
-	$sql="SELECT * FROM permisos";
-	return ejecutarConsulta($sql);
-}
 
 
-public function verificar($usu_login,$usu_clave){
-	$sql="call sp_logeo('$usu_login','$usu_clave');";
-    //return $sql;
-	return ejecutarConsultaSP($sql);	
-}
-*/
 public function obten_combo($id){
 	$sql="CALL sp_catalogo_select($id);";
 	return ejecutarConsultaSP($sql);
 }
+	
+public function insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_correo,$don_direccion,
+								   $don_fecha){
+	$sql="CALL sp_donaciones_insert('$don_cedula','$don_nombre','$don_telefono','$don_correo',
+	'$don_direccion','$don_fecha');";
+	return ejecutarConsultaSP($sql);
+}
+
+public function insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad){
+$sql="CALL sp_detalle_insert('$don_cedula','$cat_id','$cat_id_estado','$det_cantidad','$det_fechacad');";
+	return ejecutarConsultaSP($sql);
+}
+
+
+
+
+
+
+
+
 
 }
 

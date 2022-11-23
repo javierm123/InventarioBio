@@ -2,17 +2,21 @@
 session_start();
 require_once "../modelos/donadores.php";
 
-$donadores=new Donadores();
+$donadores=new donadores();
 
 $claveu=isset($_POST["claveu"])? limpiarCadena($_POST["claveu"]):"";
-$usu_id=isset($_POST["usu_id"])? limpiarCadena($_POST["usu_id"]):"";
-$usu_nombre=isset($_POST["usu_nombre"])? limpiarCadena($_POST["usu_nombre"]):"";
-$usu_cedula=isset($_POST["usu_cedula"])? limpiarCadena($_POST["usu_cedula"]):"";
-$usu_telefono=isset($_POST["usu_telefono"])? limpiarCadena($_POST["usu_telefono"]):"";
-$usu_correo=isset($_POST["usu_correo"])? limpiarCadena($_POST["usu_correo"]):"";
-$usu_cargo=isset($_POST["usu_cargo"])? limpiarCadena($_POST["usu_cargo"]):"";
-$usu_login=isset($_POST["usu_login"])? limpiarCadena($_POST["usu_login"]):"";
-$usu_clave=isset($_POST["usu_clave"])? limpiarCadena($_POST["usu_clave"]):"";
+$det_id=isset($_POST["det_id"])? limpiarCadena($_POST["det_id"]):"";
+$don_cedula=isset($_POST["don_cedula"])? limpiarCadena($_POST["don_cedula"]):"";
+$don_nombre=isset($_POST["don_nombre"])? limpiarCadena($_POST["don_nombre"]):"";
+$don_telefono=isset($_POST["don_telefono"])? limpiarCadena($_POST["don_telefono"]):"";
+$don_correo=isset($_POST["don_correo"])? limpiarCadena($_POST["don_correo"]):"";
+$don_direccion=isset($_POST["don_direccion"])? limpiarCadena($_POST["don_direccion"]):"";
+$don_fecha=isset($_POST["don_fecha"])? limpiarCadena($_POST["don_fecha"]):"";
+$cat_nombre=isset($_POST["cat_nombree"])? limpiarCadena($_POST["cat_nombree"]):"";
+$cat_descripcion=isset($_POST["cat_descripcion"])? limpiarCadena($_POST["cat_descripcion"]):"";
+$cat_id_estado=isset($_POST["cat_id_estado"])? limpiarCadena($_POST["cat_id_estado"]):"";
+$det_cantidad=isset($_POST["det_cantidad"])? limpiarCadena($_POST["det_cantidad"]):"";
+$det_fechacad=isset($_POST["det_fechacad"])? limpiarCadena($_POST["det_fechacad"]):"";
 
 switch ($_GET["op"]) {
 case 'salir':
@@ -27,10 +31,12 @@ case 'salir':
 		
 	case 'guardaryeditar':
 	if (empty($idpersona)) {
-		$rspta=$usuario->insertar($usu_nombre,$usu_cedula,$usu_telefono,$usu_correo,$usu_cargo,$usu_login,$usu_clave);
-		
-		$rspta=$usuario->insertarper($usu_id,$per_id);
-				echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+		$rspta=$donadores->insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_correo,$don_direccion,
+											 $don_fecha);
+		echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+		/*
+		$rspta=$donadores->insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad);
+				echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";*/
 
 	}/*else{
          $rspta=$persona->editar($idpersona,$tipo_persona,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email);
@@ -38,20 +44,24 @@ case 'salir':
 	}
 		*/
 		break;
+		
 		case 'listar':
-	    $rspta=$usuario->listar();
+	    $rspta=$donadores->listar();
 		$data=Array();
 
 		while ($reg=$rspta->fetch_object()) {
 			$data[]=array(
-		    "0"=>$reg->usu_id,
-            "1"=>$reg->usu_nombre,
-            "2"=>$reg->usu_cedula,
-            "3"=>$reg->usu_telefono,
-            "4"=>$reg->usu_login,
-            "5"=>$reg->usu_correo,
-			"6"=>"--",
-            "7"=>$reg->usu_condicion     
+		    "0"=>$reg->det_id,
+            "1"=>$reg->don_cedula,
+            "2"=>$reg->don_nombre,
+            "3"=>$reg->don_telefono,
+            "4"=>$reg->don_correo,
+            "5"=>$reg->don_direccion,
+			"6"=>$reg->don_fecha,
+            "7"=>$reg->cat_nombre,
+			"8"=>$reg->cat_id_estado,
+			"9"=>$reg->det_cantidad,
+			"10"=>$reg->det_fechacad
               );
 		}
 		$results=array(
@@ -62,13 +72,7 @@ case 'salir':
 		echo json_encode($results);
 	    break;
 		
-		$results=array(
-             "sEcho"=>1,//info para datatables
-             "iTotalRecords"=>count($data),//enviamos el total de registros al datatable
-             "iTotalDisplayRecords"=>count($data),//enviamos el total de registros a visualizar
-             "aaData"=>$data); 
-	echo json_encode($results);
-	break;
+
 		
 	case 'combo_categoria':			
 			$rspta = $donadores->obten_combo(1);
@@ -76,6 +80,29 @@ case 'salir':
 				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>';
 			}
 			break;	
+		
+	case 'combo_subcategoria':			
+			$rspta = $donadores->obten_combo(7);
+			while ($reg = $rspta->fetch_object()) {
+				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>';
+			}
+			break;	
+	case 'combo_materiales':	
+			$rspta = $donadores->obten_combo(9);
+		
+			while ($reg = $rspta->fetch_object()) {
+				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'-'.$reg->cat_descripcion.'</option>'
+					;
+			}
+			break;
+	case 'combo_estado':	
+			$rspta = $donadores->obten_combo(13);
+		
+			while ($reg = $rspta->fetch_object()) {
+				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>'
+					;
+			}
+			break;
 
 
 	

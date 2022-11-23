@@ -97,8 +97,7 @@ switch ($_GET["op"]) {
 	case 'guardaryeditar':
 	if (empty($idpersona)) {
 		$rspta=$usuario->insertar($usu_nombre,$usu_cedula,$usu_telefono,$usu_correo,$usu_cargo,$usu_login,$usu_clave);
-		
-		$rspta=$usuario->insertarper($usu_id,$per_id);
+	
 				echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
 
 	}/*else{
@@ -131,13 +130,7 @@ switch ($_GET["op"]) {
 		echo json_encode($results);
 	    break;
 		
-		$results=array(
-             "sEcho"=>1,//info para datatables
-             "iTotalRecords"=>count($data),//enviamos el total de registros al datatable
-             "iTotalDisplayRecords"=>count($data),//enviamos el total de registros a visualizar
-             "aaData"=>$data); 
-	echo json_encode($results);
-	break;
+	
 		
 	case 'combo_motivos':			
 			$rspta = $usuario->obten_motivos(6);

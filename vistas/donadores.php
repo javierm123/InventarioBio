@@ -7,7 +7,7 @@ if (!isset($_SESSION['usu_nombre'])) {
 }else{
 
 require 'header.php';
-if ($_SESSION['Actas']==1) {
+if ($_SESSION['Actas']==0) {
  ?>
     <div class="content-wrapper">
     <!-- Main content -->
@@ -18,7 +18,7 @@ if ($_SESSION['Actas']==1) {
         <div class="col-md-12">
       <div class="box">
 <div class="box-header with-border">
-  <h1 class="box-title">Usuarios <button class="btn btn-success" onclick="mostrarform(true)" id="btnagregar"><i class="fa fa-plus-circle"></i>Agregar</button></h1>
+  <h1 class="box-title">Donaciones <button class="btn btn-success" onclick="mostrarform(true)" id="btnagregar"><i class="fa fa-plus-circle"></i>Agregar</button></h1>
   <div class="box-tools pull-right">
     
   </div>
@@ -26,15 +26,19 @@ if ($_SESSION['Actas']==1) {
 <!--box-header-->
 <!--centro-->
 <div style="width:900" id="listadoregistros">
-  <table id="tbllistado"  class="table table-striped table-bordered table-condensed table-hover"> 
+  <!--<table id="tbllistado"  class="table table-striped table-bordered table-condensed -->table-hover"> 
     <thead>
+	  <th>ID</th>
       <th>Cedula</th>
       <th>Nombre</th>
       <th>Telefono</th>
       <th>Email</th>
       <th>Dirección</th>
-      <th>Cargo</th>
-      <th>Estado</th>
+      <th>F.Donacion</th>
+      <th>Articulo</th>
+	  <th>Estado</th>
+	  <th>Cantidad</th>
+	  <th>F.Caducidad</th>
 		
     </thead>
     <tbody>
@@ -43,44 +47,62 @@ if ($_SESSION['Actas']==1) {
 </div>
 <div class="panel-body" id="formularioregistros">
   <form action="" name="formulario" id="formulario" method="POST">
-    <div class="form-group col-lg-12 col-md-12 col-xs-12">
+    <div class="form-group col-lg-6 col-md-12 col-xs-12">
       <label for="">Cédula(*):</label>
       <!--<input class="form-control" type="text" name="usu_id" id="usu_id">-->
-      <input class="form-control" type="text" name="usu_nombre" id="usu_nombre" maxlength="100" placeholder="Nombre" required>
+      <input class="form-control" type="text" name="don_cedula" id="don_cedula" maxlength="100" placeholder="Cedula" required>
     </div>
    
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Nombre(*):</label>
-      <input type="text" class="form-control" name="usu_cedula" id="usu_cedula" placeholder="Cedula" maxlength="20">
+      <input type="text" class="form-control" name="don_nombre" id="don_nombre" placeholder="Nombre" maxlength="20">
     </div>
      <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Teléfono</label>
-      <input class="form-control" type="text" name="usu_telefono" id="usu_telefono" maxlength="20" placeholder="Número de telefono">
+      <input class="form-control" type="text" name="don_telefono" id="don_telefono" maxlength="20" placeholder="Número de telefono">
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Correo</label>
-      <input class="form-control" type="email" name="usu_correo" id="usu_correo" maxlength="70" placeholder="Correo">
+      <input class="form-control" type="email" name="don_correo" id="don_correo" maxlength="70" placeholder="Correo">
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Dirección</label>
-      <input class="form-control" type="text" name="usu_cargo" id="usu_cargo" maxlength="20" placeholder="Cargo">
+      <input class="form-control" type="text" name="don_direccion" id="don_direccion" maxlength="20" placeholder="Direccion">
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Fecha de Donación(*):</label>
-      <input class="form-control" type="date" name="usu_login" id="usu_login" maxlength="20" placeholder="nombre de usuario" required>
+      <input class="form-control" type="date" name="don_fecha" id="don_fecha" maxlength="20" placeholder="nombre de usuario" required>
     </div>
     <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label for="">(CATEGORÍA*):</label>
-           <select id="categoria" name="categoria" class="form-control selectpicker"></select>
+      <label for="">Articulo(*):</label>
+           <select id="materiales" name="materiales" class="form-control selectpicker"></select>
+		</div>
+		<!--<label for="">(SUB_CATEGORÍA*):</label>
+           <select id="subcategoria" name="subcategoria" class="form-control selectpicker"></select>
+		
 
     </div>
-    <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label>Permisos</label>
-      <ul id="permiso" style="list-style: none;">
 
-      </ul>
+	   
+	  <div class="form-group col-lg-2 col-md-5 col-xs-9">
+      <label for="">(VIDRIOS*):</label>
+           <select id="materiales" name="materiales" class="form-control selectpicker"></select>
+    </div>-->
+    <div class="form-group col-lg-4 col-md-6 col-xs-12">
+		<label for="">Estado(*):</label>
+           <select id="estado" name="estado" class="form-control selectpicker"></select>
+		</div>
+	  
+	 <div class="form-group col-lg-6 col-md-6 col-xs-12">
+      <label for="">Cantidad(*)</label>
+      <input class="form-control" type="text" name="det_cantidad" id="det_cantidad" maxlength="20" placeholder="Cantidad">
     </div>
-      
+	  
+	     <div class="form-group col-lg-6 col-md-6 col-xs-12">
+      <label for="">Caducidad(*):</label>
+      <input class="form-control" type="date" name="det_fechacad" id="det_fechacad" maxlength="20" placeholder="Fecha de caducidad" required>
+    </div>
+	  
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i>  Guardar</button>
       <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
