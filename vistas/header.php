@@ -114,7 +114,7 @@ if ($_SESSION['Actas']==0) {
 }
         ?>
                <?php 
-if ($_SESSION['Activos']==0) {
+if ($_SESSION['Activos']==1) {
   echo ' <li class="treeview">
           <a href="#">
             <i class="fa fa-th"></i> <span>Opciones de Docente</span>
@@ -136,16 +136,14 @@ if ($_SESSION['Activos']==0) {
 if ($_SESSION['Generación']==0) {
   echo '<li class="treeview">
           <a href="#">
-            <i class="fa fa-folder"></i> <span>Administrativo</span>
+            <i class="fa fa-folder"></i> <span>Catalogo</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="controlpersonal.php"><i class="fa fa-circle-o"></i> Imp. Control de personal</a></li>
-            <li><a href="asistencia.php"><i class="fa fa-circle-o"></i> Asistencia Empresas	</a></li>
-			<li><a href="asistenciaist.php"><i class="fa fa-circle-o"></i> Asistencia IST	</a></li>
-			<li><a href="vacacionsaldo.php"><i class="fa fa-circle-o"></i> Saldos Vacaciones Personal</a></li>
+            <li><a href="catalogo.php"><i class="fa fa-circle-o"></i> Catalogo</a></li>
+            
           </ul>
         </li>';
 }
@@ -189,15 +187,15 @@ if ($_SESSION['Reportes']==0) {
 if ($_SESSION['Custodios']==0) {
   echo '<li class="treeview">
           <a href="#">
-            <i class="fa fa-bar-chart"></i> <span>Custodios</span>
+            <i class="fa fa-bar-chart"></i> <span>Usos</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="activoscustodio.php"><i class="fa fa-circle-o"></i> Consulta de Activos</a></li>
+            <li><a href="usos.php"><i class="fa fa-circle-o"></i> Registro de Usos</a></li>
          
-            <li><a href="mantenimiento.php"><i class="fa fa-circle-o"></i> Pedido de Mantenimiento</a></li>
+     
 
           </ul>
         </li>';

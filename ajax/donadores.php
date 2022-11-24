@@ -12,7 +12,8 @@ $don_telefono=isset($_POST["don_telefono"])? limpiarCadena($_POST["don_telefono"
 $don_correo=isset($_POST["don_correo"])? limpiarCadena($_POST["don_correo"]):"";
 $don_direccion=isset($_POST["don_direccion"])? limpiarCadena($_POST["don_direccion"]):"";
 $don_fecha=isset($_POST["don_fecha"])? limpiarCadena($_POST["don_fecha"]):"";
-$cat_nombre=isset($_POST["cat_nombree"])? limpiarCadena($_POST["cat_nombree"]):"";
+$cat_id=isset($_POST["cat_id"])? limpiarCadena($_POST["cat_id"]):"";
+$cat_nombre=isset($_POST["cat_nombre"])? limpiarCadena($_POST["cat_nombre"]):"";
 $cat_descripcion=isset($_POST["cat_descripcion"])? limpiarCadena($_POST["cat_descripcion"]):"";
 $cat_id_estado=isset($_POST["cat_id_estado"])? limpiarCadena($_POST["cat_id_estado"]):"";
 $det_cantidad=isset($_POST["det_cantidad"])? limpiarCadena($_POST["det_cantidad"]):"";
@@ -33,11 +34,14 @@ case 'salir':
 	if (empty($idpersona)) {
 		$rspta=$donadores->insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_correo,$don_direccion,
 											 $don_fecha);
-		echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
-		/*
+											 
 		$rspta=$donadores->insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad);
-				echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";*/
+			
 
+		echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
+	}
+		/*
+		
 	}/*else{
          $rspta=$persona->editar($idpersona,$tipo_persona,$nombre,$tipo_documento,$num_documento,$direccion,$telefono,$email);
 		echo $rspta ? "Datos actualizados correctamente" : "No se pudo actualizar los datos";
@@ -91,7 +95,7 @@ case 'salir':
 			$rspta = $donadores->obten_combo(9);
 		
 			while ($reg = $rspta->fetch_object()) {
-				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'-'.$reg->cat_descripcion.'</option>'
+				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>'
 					;
 			}
 			break;
