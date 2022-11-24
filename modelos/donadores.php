@@ -27,7 +27,7 @@ public function
 }
 	
 public function listar(){
-	$sql="call sp_detalle_select";
+	$sql="call sp_detalle_select()";
 	return ejecutarConsulta($sql);
 }
 	
@@ -37,7 +37,7 @@ public function obten_combo($id){
 	$sql="CALL sp_catalogo_select($id);";
 	return ejecutarConsultaSP($sql);
 }
-	
+
 public function insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_correo,$don_direccion,
 								   $don_fecha){
 	$sql="CALL sp_donaciones_insert('$don_cedula','$don_nombre','$don_telefono','$don_correo',

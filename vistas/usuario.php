@@ -8,7 +8,7 @@ if (!isset($_SESSION['usu_nombre'])) {
 }else{
 
 require 'header.php';
-if ($_SESSION['Acceso']==1) {
+if ($_SESSION['Acceso']==0) {
  ?>
     <div class="content-wrapper">
     <!-- Main content -->

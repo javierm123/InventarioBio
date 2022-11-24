@@ -44,7 +44,7 @@ switch ($_GET["op"]) {
 			case 'combo_usos':			
 			$rspta = $usuario->mostrar_combo();
 			while ($reg = $rspta->fetch_object()) {
-				echo '<option value='.$reg->uso_id.'>'.$reg->usu_id.'</option>';
+				echo '<option value='.$reg->uso_id.'>'.$reg->usu_nombre.'</option>';
 			}
 			break;
 		

@@ -25,26 +25,7 @@ if ($_SESSION['Actas']==0) {
 </div>
 <!--box-header-->
 <!--centro-->
-<div style="width:900" id="listadoregistros">
-  <!--<table id="tbllistado"  class="table table-striped table-bordered table-condensed -->table-hover"> 
-    <thead>
-	  <th>ID</th>
-      <th>Cedula</th>
-      <th>Nombre</th>
-      <th>Telefono</th>
-      <th>Email</th>
-      <th>Dirección</th>
-      <th>F.Donacion</th>
-      <th>Articulo</th>
-	  <th>Estado</th>
-	  <th>Cantidad</th>
-	  <th>F.Caducidad</th>
-		
-    </thead>
-    <tbody>
-    </tbody>   
-  </table>
-</div>
+
 <div class="panel-body" id="formularioregistros">
   <form action="" name="formulario" id="formulario" method="POST">
     <div class="form-group col-lg-6 col-md-12 col-xs-12">
@@ -109,6 +90,26 @@ if ($_SESSION['Actas']==0) {
     </div>
   </form>
 </div>
+		  <div style="width:900" id="listadoregistros">
+  <table id="tbllistado"  class="table table-striped table-bordered table-condensed table-hover"> 
+    <thead>
+	  <th>ID</th>
+      <th>Cedula</th>
+      <th>Nombre</th>
+      <th>Telefono</th>
+      <th>Email</th>
+      <th>Dirección</th>
+      <th>F.Donacion</th>
+      <th>Articulo</th>
+	  <th>Estado</th>
+	  <th>Cantidad</th>
+	  <th>F.Caducidad</th>
+		
+    </thead>
+    <tbody>
+    </tbody>   
+  </table>
+</div>
 <!--fin centro-->
       </div>
       </div>
@@ -118,6 +119,7 @@ if ($_SESSION['Actas']==0) {
     </section>
     <!-- /.content -->
   </div>
+
 <?php 
 }else{
  require 'noacceso.php'; 

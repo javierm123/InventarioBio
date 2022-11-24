@@ -51,13 +51,13 @@ function limpiar(){
 function mostrarform(flag){
 	limpiar();
 	if(flag){
-		$("#listadoregistros").hide();
+		$("#listadoregistros").SHOW();
 		$("#formularioregistros").show();
 		$("#btnGuardar").prop("disabled",false);
 		$("#btnagregar").hide();
 	}else{
 		$("#listadoregistros").show();
-		$("#formularioregistros").hide();
+		$("#formularioregistros").show();
 		$("#btnagregar").show();
 	}
 }
@@ -76,7 +76,7 @@ function listar(){
 		
 		"ajax":
 		{
-			url:'../ajax/usuario.php?op=listar',
+			url:'../ajax/donadores.php?op=listar',
 			type: "get",
 			dataType : "json",
 			error:function(e){
