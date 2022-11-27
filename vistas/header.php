@@ -107,14 +107,14 @@ if ($_SESSION['Actas']==0) {
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="donadores.php"><i class="fa fa-circle-o"></i> Donadores</a></li>           
+            <li><a href="donadores.php"><i class="fa fa-circle-o"></i> Registrar Donadores</a></li>  <li><a href="donaciones.php"><i class="fa fa-circle-o"></i> Registrar Donaciones</a></li>        
                  
           </ul>
         </li>';
 }
         ?>
                <?php 
-if ($_SESSION['Activos']==1) {
+if ($_SESSION['Activos']==0) {
   echo ' <li class="treeview">
           <a href="#">
             <i class="fa fa-th"></i> <span>Opciones de Docente</span>

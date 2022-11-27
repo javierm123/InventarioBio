@@ -1,8 +1,8 @@
 <?php 
 session_start();
-require_once "../modelos/donadores.php";
+require_once "../modelos/donaciones.php";
 
-$donadores=new donadores();
+$donadores=new donaciones();
 
 $claveu=isset($_POST["claveu"])? limpiarCadena($_POST["claveu"]):"";
 $det_id=isset($_POST["det_id"])? limpiarCadena($_POST["det_id"]):"";
@@ -18,6 +18,9 @@ $cat_descripcion=isset($_POST["cat_descripcion"])? limpiarCadena($_POST["cat_des
 $cat_id_estado=isset($_POST["cat_id_estado"])? limpiarCadena($_POST["cat_id_estado"]):"";
 $det_cantidad=isset($_POST["det_cantidad"])? limpiarCadena($_POST["det_cantidad"]):"";
 $det_fechacad=isset($_POST["det_fechacad"])? limpiarCadena($_POST["det_fechacad"]):"";
+$det_fechadon=isset($_POST["det_fechadon"])? limpiarCadena($_POST["det_fechadon"]):"";
+
+
 
 switch ($_GET["op"]) {
 case 'salir':
@@ -32,10 +35,10 @@ case 'salir':
 		
 	case 'guardaryeditar':
 	if (empty($idpersona)) {
-		$rspta=$donadores->insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_correo,$don_direccion,
-											 $don_fecha);
+		//$rspta=$donadores->insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_correo,$don_direccion,$don_fecha);
 											 
-		//$rspta=$donadores->insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad);
+		$rspta=$donadores->insertar_detalle($_POST["donadores"],$_POST["materialesdon"],$_POST["estado"],$det_cantidad,$det_fechacad,$det_fechadon);
+		
 			
 
 		echo $rspta ? "Datos registrados correctamente" : "No se pudo registrar los datos";
@@ -55,12 +58,14 @@ case 'salir':
 
 		while ($reg=$rspta->fetch_object()) {
 			$data[]=array(
-            "0"=>$reg->don_cedula,
+		    "0"=>$reg->det_id,
             "1"=>$reg->don_nombre,
-            "2"=>$reg->don_telefono,
-            "3"=>$reg->don_correo,
-            "4"=>$reg->don_direccion,
-			"5"=>$reg->don_fecha,
+            "2"=>$reg->cat_nombre,
+		    "3"=>$reg->cat_descripcion,
+			"4"=>$reg->cat_id_estado,
+			"5"=>$reg->det_cantidad,
+			"6"=>$reg->det_fechacad,
+			"7"=>$reg->det_fechadon
               );
 		}
 		$results=array(

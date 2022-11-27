@@ -1,7 +1,7 @@
 <?php 
 //incluir la conexion de base de datos
 require "../config/Conexion.php";
-class donadores{
+class donaciones{
 
 
 	//implementamos nuestro constructor
@@ -27,7 +27,7 @@ public function
 }
 	
 public function listar(){
-	$sql="call sp_donaciones_select()";
+	$sql="call sp_detalle_select()";
 	return ejecutarConsulta($sql);
 }
 	
@@ -49,12 +49,22 @@ public function insertar_donadores($don_cedula,$don_nombre,$don_telefono,$don_co
 	return ejecutarConsultaSP($sql);
 }
 
-public function insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad){
-$sql="CALL sp_detalle_insert('$don_cedula','$cat_id','$cat_id_estado','$det_cantidad','$det_fechacad');";
+	
+public function insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad,$det_fechadon){
+$sql="CALL sp_detalle_insert($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,
+'$det_fechacad','$det_fechadon');";
 	return ejecutarConsultaSP($sql);
 }
 
-
+/*public function insertar_detalle($don_cedula,$cat_id,$cat_id_estado,$det_cantidad,$det_fechacad,$det_fechadon){
+	$sql=
+		"INSERT INTO detalle (don_cedula,
+		cat_id,cat_id_estado,det_cantidad,det_fechacad,det_fechadon)
+	   VALUES ($don_cedula,
+		'$cat_id',$cat_id_estado,'$det_cantidad','$det_fechacad','$det_fechadon');";
+	return ejecutarConsulta($sql);
+}
+*/
 
 
 

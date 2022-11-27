@@ -22,16 +22,20 @@ function init(){
    	$("#subcategoria").selectpicker('refresh');
      });
 	
-	$.post("../ajax/donadores.php?op=combo_materiales", function(r){
-   	$("#materiales").html(r);
-   	$("#materiales").selectpicker('refresh');
+	$.post("../ajax/donaciones.php?op=combo_materiales", function(r){
+   	$("#materialesdon").html(r);
+   	$("#materialesdon").selectpicker('refresh');
      });
 	
-	$.post("../ajax/donadores.php?op=combo_estado", function(r){
+	$.post("../ajax/donaciones.php?op=combo_estado", function(r){
    	$("#estado").html(r);
    	$("#estado").selectpicker('refresh');
      });
 	
+	$.post("../ajax/donaciones.php?op=combo_donadores", function(r){
+   	$("#donadores").html(r);
+   	$("#donadores").selectpicker('refresh');
+     });
 }
 
 //funcion limpiar
@@ -76,7 +80,7 @@ function listar(){
 		
 		"ajax":
 		{
-			url:'../ajax/donadores.php?op=listar',
+			url:'../ajax/donaciones.php?op=listar',
 			type: "get",
 			dataType : "json",
 			error:function(e){
@@ -95,7 +99,7 @@ function guardaryeditar(e){
      var formData=new FormData($("#formulario")[0]);
 
      $.ajax({
-     	url: "../ajax/donadores.php?op=guardaryeditar",
+     	url: "../ajax/donaciones.php?op=guardaryeditar",
      	type: "POST",
      	data: formData,
      	contentType: false,

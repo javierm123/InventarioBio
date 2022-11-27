@@ -18,7 +18,7 @@ if ($_SESSION['Actas']==0) {
         <div class="col-md-12">
       <div class="box">
 <div class="box-header with-border">
-  <h1 class="box-title">Donadores</h1>
+  <h1 class="box-title">Donadociones</h1>
   <div class="box-tools pull-right">
     
   </div>
@@ -28,36 +28,16 @@ if ($_SESSION['Actas']==0) {
 
 <div class="panel-body" id="formularioregistros">
   <form action="" name="formulario" id="formulario" method="POST">
-    <div class="form-group col-lg-6 col-md-12 col-xs-12">
-      <label for="">Cédula(*):</label>
-      <!--<input class="form-control" type="text" name="usu_id" id="usu_id">-->
-      <input class="form-control" type="text" name="don_cedula" id="don_cedula" maxlength="100" placeholder="Cedula" required>
-    </div>
-   
-    <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label for="">Nombre(*):</label>
-      <input type="text" class="form-control" name="don_nombre" id="don_nombre" placeholder="Nombre" maxlength="20">
-    </div>
+  
+     
      <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label for="">Teléfono</label>
-      <input class="form-control" type="text" name="don_telefono" id="don_telefono" maxlength="20" placeholder="Número de telefono">
-    </div>
-    <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label for="">Correo</label>
-      <input class="form-control" type="email" name="don_correo" id="don_correo" maxlength="70" placeholder="Correo">
-    </div>
-    <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label for="">Dirección</label>
-      <input class="form-control" type="text" name="don_direccion" id="don_direccion" maxlength="20" placeholder="Direccion">
-    </div>
-    <div class="form-group col-lg-6 col-md-6 col-xs-12">
-      <label for="">Fecha de Donación(*):</label>
-      <input class="form-control" type="date" name="don_fecha" id="don_fecha" maxlength="20" placeholder="nombre de usuario" required>
-    </div>
-	  <!--
-    <div class="form-group col-lg-6 col-md-6 col-xs-12">
+      <label for="">Donador(*):</label>
+           <select id="donadores" name="donadores" class="form-control selectpicker"></select>
+		</div>
+	  
+	  <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Articulo(*):</label>
-           <select id="materiales" name="materiales" class="form-control selectpicker"></select>
+           <select id="materialesdon" name="materialesdon" class="form-control selectpicker"></select>
 		</div>
 		
     <div class="form-group col-lg-4 col-md-6 col-xs-12">
@@ -74,7 +54,10 @@ if ($_SESSION['Actas']==0) {
       <label for="">Caducidad(*):</label>
       <input class="form-control" type="date" name="det_fechacad" id="det_fechacad" maxlength="20" placeholder="Fecha de caducidad" required>
     </div>
-	  -->
+	  <div class="form-group col-lg-6 col-md-6 col-xs-12">
+      <label for="">Fecha de Donación(*):</label>
+      <input class="form-control" type="date" name="det_fechadon" id="det_fechadon" maxlength="20" placeholder="Fecha de donación" required>
+    </div>
     <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i>  Guardar</button>
       <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
@@ -84,14 +67,14 @@ if ($_SESSION['Actas']==0) {
 		  <div style="width:900" id="listadoregistros">
   <table id="tbllistado"  class="table table-striped table-bordered table-condensed table-hover"> 
     <thead>
-	  
-      <th>Cedula</th>
-      <th>Nombre</th>
-      <th>Telefono</th>
-      <th>Email</th>
-      <th>Dirección</th>
-      <th>F.Donacion</th>
-    
+	  <th>ID</th>
+      <th>Donador</th>
+      <th>Articulo</th>
+	  <th>Descripcion</th>
+	  <th>Estado</th>
+	  <th>Cantidad</th>
+	  <th>F.Caducidad</th>
+	  <th>F.Donacion</th>
 		
     </thead>
     <tbody>
@@ -115,7 +98,7 @@ if ($_SESSION['Actas']==0) {
 require 'footer.php';
  ?>
  <script src="scripts/hmac-sha256.js"></script>
- <script src="scripts/donadores.js"></script>
+ <script src="scripts/donaciones.js"></script>
  <?php 
 }
 
