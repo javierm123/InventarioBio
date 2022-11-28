@@ -91,17 +91,20 @@ case 'salir':
 				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>';
 			}
 			break;	
-	case 'combo_materiales':	
-			$rspta = $donadores->obten_combo(9);
 		
+	case 'combo_materiales':
+		
+			$rspta = $donadores->obten_materiales();
+		echo'<option value="-1">Seleccione el Articulo </option>';
 			while ($reg = $rspta->fetch_object()) {
 				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'-'.$reg->cat_descripcion.'</option>'
 					;
 			}
+		
 			break;
 	case 'combo_estado':	
 			$rspta = $donadores->obten_combo(13);
-		
+		echo'<option value="-1">Seleccione el Estado </option>';
 			while ($reg = $rspta->fetch_object()) {
 				echo '<option value='.$reg->cat_id.'>'.$reg->cat_nombre.'</option>'
 					;
@@ -110,7 +113,7 @@ case 'salir':
 		
 		case 'combo_donadores':	
 			$rspta = $donadores->combo_donadores();
-		
+		echo'<option value="-1">Seleccione el Donador </option>';
 			while ($reg = $rspta->fetch_object()) {
 				echo '<option value='.$reg->don_cedula.'>'.$reg->don_nombre.'</option>'
 					;

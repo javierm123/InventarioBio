@@ -47,7 +47,7 @@ if ($_SESSION['Actas']==0) {
 	  
 	 <div class="form-group col-lg-6 col-md-6 col-xs-12">
       <label for="">Cantidad(*)</label>
-      <input class="form-control" type="text" name="det_cantidad" id="det_cantidad" maxlength="20" placeholder="Cantidad">
+      <input class="form-control" type="text" name="det_cantidad" id="det_cantidad" maxlength="20" placeholder="Cantidad" required>
     </div>
 	  
 	     <div class="form-group col-lg-6 col-md-6 col-xs-12">

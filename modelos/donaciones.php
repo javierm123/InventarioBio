@@ -38,6 +38,11 @@ public function obten_combo($id){
 	return ejecutarConsultaSP($sql);
 }
 
+public function obten_materiales(){
+	$sql="CALL sp_articulos();";
+	return ejecutarConsultaSP($sql);
+}
+
 public function combo_donadores(){
 	$sql="CALL sp_donadores_combo();";
 	return ejecutarConsultaSP($sql);
